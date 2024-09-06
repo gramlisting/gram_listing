@@ -1,0 +1,8 @@
+#  当你在 workspace 根目录运行 pnpm install 时，
+#  pnpm 会自动处理 workspace 中所有包的依赖关系。
+#  pnpm 会在工作区内的包之间创建符号链接，从而确保包之间的相互引用是最新的。
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+
