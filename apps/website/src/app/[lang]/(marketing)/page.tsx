@@ -1,12 +1,11 @@
-import {Meteor} from "@/types/meteors";
-import {Locale} from "@/config/i18n-config";
-import {getDictionary} from "@/lib/get-dictionary";
+import { Meteor } from "@/types/meteors";
+import { Locale } from "@/config/i18n-config";
+import { getDictionary } from "@/lib/get-dictionary";
 import VoteButton from "@/components/vote-button";
-import {MeteorsCard} from "@/components/meteors-card";
-import {FeaturesCard} from "@/components/features-card";
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-
+import { MeteorsCard } from "@/components/meteors-card";
+import { FeaturesCard } from "@/components/features-card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const meteors_data: Meteor = {
   name: "Submit your project",
@@ -163,7 +162,14 @@ export default async function IndexPage({
             <h1 className="mb-6 text-center text-3xl font-bold dark:text-zinc-100 md:text-5xl">
               Explore Web3 Gems on Telegram
             </h1>
-            <Button variant={"default"}>ABC</Button>
+            <div className={"flex gap-2 pb-2"}>
+              <Button variant={"default"}>default</Button>
+              <Button variant={"destructive"}>destructive</Button>
+              <Button variant={"outline"}>outline</Button>
+              <Button variant={"secondary"}>secondary</Button>
+              <Button variant={"ghost"}>ghost</Button>
+              <Button variant={"link"}>link</Button>
+            </div>
           </div>
           <div className="mb-6 w-full text-xl dark:text-zinc-100  md:text-xl ">
             <Input
