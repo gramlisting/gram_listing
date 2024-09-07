@@ -1,0 +1,315 @@
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+generator client {
+  provider     = "prisma-kysely"
+  output       = "."
+  fileName     = "types.ts"
+  enumFileName = "enums.ts"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("POSTGRES_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id          BigInt         @id @default(autoincrement())
+  loginType   LoginType
+  tgId        BigInt         @unique
+  tgUsername  String?
+  firstName   String?
+  lastName    String?
+  profileImg  String?
+  isPremium   Boolean        @default(false)
+  refCode     String         @unique
+  referBy     BigInt?
+  langCode    String?
+  totalPoints BigInt         @default(0)
+  extJson     Json?
+  createBy    BigInt?
+  createDt    DateTime       @default(now())
+  modifyBy    BigInt?
+  modifyDt    DateTime       @updatedAt
+  gems        GemsOnUsers[]
+  tasks       TasksOnUsers[]
+}
+
+model UserAction {
+  id                BigInt   @id @default(autoincrement())
+  opTgId            BigInt
+  opDisplayName     String?
+  actionType        String
+  selfReward        BigInt?
+  targetTgId        BigInt?
+  targetReward      BigInt?
+  targetDisplayName String?
+  extJson           Json?
+  createBy          BigInt?
+  createDt          DateTime @default(now())
+  modifyBy          BigInt?
+  modifyDt          DateTime @unique @updatedAt
+
+  @@index([opTgId])
+}
+
+model WalletInfo {
+  id       BigInt     @id @default(autoincrement())
+  tgId     BigInt
+  chain    Blockchain
+  network  Network
+  address  String     @unique
+  balance  BigInt?
+  loginDt  DateTime   @default(now())
+  extJson  Json?
+  createBy BigInt?
+  createDt DateTime   @default(now())
+  modifyBy BigInt?
+  modifyDt DateTime   @updatedAt
+
+  @@index([address])
+}
+
+model Category {
+  id                   BigInt                 @id @default(autoincrement())
+  ecosystem            Ecosystem
+  lv1                  String
+  lv2                  String
+  extJson              Json?
+  createBy             BigInt?
+  createDt             DateTime               @default(now())
+  modifyBy             BigInt?
+  modifyDt             DateTime               @updatedAt
+  CategoriesOnProjects CategoriesOnProjects[]
+}
+
+model Project {
+  id                   BigInt                 @id @default(autoincrement())
+  ownerTgId            BigInt
+  name                 String?
+  tagline              String?
+  desc                 String?                @db.Text
+  langCodes            String?
+  ecosystem            Ecosystem              @default(Toncoin)
+  website              String?
+  twitter              String?
+  tgChannel            String?
+  tgChat               String?
+  tgBot                String?
+  iconImg              String?
+  imgService           ImageService
+  upvote               Int                    @default(1)
+  extJson              Json?
+  createBy             BigInt?
+  createDt             DateTime               @default(now())
+  modifyBy             BigInt?
+  modifyDt             DateTime               @updatedAt
+  CategoriesOnProjects CategoriesOnProjects[]
+}
+
+model CategoriesOnProjects {
+  project    Project  @relation(fields: [projectId], references: [id])
+  projectId  BigInt
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId BigInt
+  createBy   String
+  createDt   DateTime @default(now())
+
+  @@id([projectId, categoryId])
+  @@index([categoryId])
+}
+
+model ProjectVote {
+  id        BigInt   @id @default(autoincrement())
+  projectId BigInt
+  voteBy    BigInt
+  createBy  BigInt?
+  createDt  DateTime @default(now())
+
+  @@index([projectId])
+  @@index([voteBy])
+}
+
+model Image {
+  id       BigInt        @id @default(autoincrement())
+  scenario ImageScenario
+  bindId   BigInt?
+  service  ImageService
+  url      String
+  extJson  Json?
+  createBy BigInt?
+  createDt DateTime      @default(now())
+}
+
+model Gem {
+  id        BigInt        @id @default(autoincrement())
+  ownerTgId BigInt
+  projectId BigInt?
+  name      String
+  type      GemType
+  upvote    Int           @default(1)
+  tagline   String?
+  rules     String?       @db.Text
+  extJson   Json?
+  createBy  BigInt?
+  createDt  DateTime      @default(now())
+  modifyBy  BigInt?
+  modifyDt  DateTime      @updatedAt
+  users     GemsOnUsers[]
+  tasks     Task[]
+}
+
+model GemsOnUsers {
+  user     User        @relation(fields: [userId], references: [id])
+  userId   BigInt
+  gem      Gem         @relation(fields: [gemId], references: [id])
+  gemId    BigInt
+  state    CommonState
+  extJson  Json?
+  createBy String
+  createDt DateTime    @default(now())
+
+  @@id([userId, gemId])
+  @@index([userId])
+  @@index([gemId])
+}
+
+model TasksOnUsers {
+  user     User        @relation(fields: [userId], references: [id])
+  userId   BigInt
+  task     Task        @relation(fields: [taskId], references: [id])
+  taskId   BigInt
+  gemId    BigInt?
+  state    CommonState
+  extJson  Json?
+  createBy String
+  createDt DateTime    @default(now())
+
+  @@id([userId, taskId])
+  @@index([userId])
+  @@index([taskId])
+}
+
+model GemVote {
+  id       BigInt   @id @default(autoincrement())
+  gemId    BigInt
+  voteBy   BigInt
+  createBy BigInt?
+  createDt DateTime @default(now())
+
+  @@index([gemId])
+  @@index([voteBy])
+}
+
+model Task {
+  id           BigInt         @id @default(autoincrement())
+  type         TaskType
+  target       String
+  extJson      Json?
+  createBy     BigInt?
+  createDt     DateTime       @default(now())
+  modifyBy     BigInt?
+  modifyDt     DateTime       @updatedAt
+  gem          Gem            @relation(fields: [gemId], references: [id])
+  gemId        BigInt
+  TasksOnUsers TasksOnUsers[]
+
+  @@index([gemId])
+}
+
+//  ================== enums ==================
+
+enum CommonState {
+  Init
+  Pending
+  Done
+  Fail
+}
+
+enum TaskType {
+  GroupJoin
+  ChannelJoin
+  MiniAppOpen
+  TwitterFollow
+  TwitterReply
+  TwitterLike
+  TwitterRepost
+  WebsiteOpen
+  DiscordJoin
+  WalletConnect
+}
+
+enum LoginType {
+  TgAuth
+  MiniApp
+}
+
+enum Ecosystem {
+  Bitcoin
+  Ethereum
+  BNB
+  Solana
+  Toncoin
+  Artela
+}
+
+enum Blockchain {
+  TON
+  SOL
+  ETH
+}
+
+enum Network {
+  Mainnet
+  Testnet
+  Custom
+}
+
+enum ChatStatus {
+  creator
+  member
+  administrator
+  restricted
+  left
+  kicked
+}
+
+enum ImageScenario {
+  Project
+  Gem
+  Matcher
+  Newsletter
+  Service
+  Tool
+  Other
+}
+
+enum ImageService {
+  Local
+  AwsS3
+  AliyunOSS
+  CloudflareImage
+}
+
+enum GemType {
+  // Bogo
+  Coupon
+  // Contests
+  Cashback
+  Discount
+  FreeTrial
+  // FlashSale
+  Giveaway
+  Groupon
+  Lottery
+  LoyaltyPoints
+  // MysteryGift
+  ReferralBonus
+  SpinTheWheel
+  Whitelist
+  Other
+}
+
+//  ================== enums end ==================

@@ -1,0 +1,55 @@
+{
+  "name": "@gramlisting/db",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./index.ts"
+  },
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "scripts": {
+    "clean": "rm -rf .turbo node_modules",
+    "lint": "eslint .",
+    "format": "prisma format && prettier --check '**/*.{ts,json}' ",
+    "db:generate": "prisma generate",
+    "db:push": "bun with-env prisma db push --skip-generate",
+    "typecheck": "tsc --noEmit",
+    "with-env": "dotenv -e ../../.env.local --",
+    "prisma_migrate_dev": "bun with-env prisma migrate dev",
+    "prisma_migrate_reset": "npx prisma migrate reset",
+    "prisma_migrate_deploy": "npx prisma migrate deploy",
+    "prisma_migrate_status": "npx prisma migrate status",
+    "prisma_migrate_resolve": "npx prisma migrate resolve",
+    "prisma_generate": "npx prisma generate",
+    "prisma_db_pull": "npx prisma db pull  && npx prisma generate",
+    "prisma_db_push": "npx prisma db push  && npx prisma generate",
+    "prisma_db_seed": "npx prisma db seed",
+    "prisma_studio": "npx prisma studio"
+  },
+  "dependencies": {
+    "kysely": "0.27.3",
+    "@vercel/postgres-kysely": "0.8.0"
+  },
+  "devDependencies": {
+    "@gramlisting/eslint-config": "workspace:*",
+    "@gramlisting/prettier-config": "workspace:*",
+    "@gramlisting/typescript-config": "workspace:*",
+    "dotenv-cli": "7.3.0",
+    "eslint": "8.57.0",
+    "prettier": "3.3.3",
+    "prisma": "5.9.1",
+    "prisma-kysely": "1.7.1",
+    "@types/pg": "8.11.0",
+    "typescript": "5.5.4"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@gramlisting/eslint-config/base"
+    ],
+    "rules": {
+      "@typescript-eslint/consistent-type-definitions": "off"
+    }
+  },
+  "prettier": "@gramlisting/prettier-config"
+}

@@ -4,5 +4,6 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+  - 'tooling/*'
 
 

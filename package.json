@@ -1,10 +1,10 @@
 {
-  "name": "gram_listing",
+  "name": "gramlisting",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "pnpm -r run dev",
-    "lint": "../../node_modules/.bin/next lint"
+    "build": "pnpm -r run build"
   },
   "engines": {
     "node": ">=22",
@@ -23,6 +23,7 @@
   },
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "tooling/*"
   ]
 }
