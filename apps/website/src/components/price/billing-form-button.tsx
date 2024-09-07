@@ -5,7 +5,6 @@
 // import { Button } from "@gramlisting/ui/button";
 // import * as Icons from "@gramlisting/ui/icons";
 //
-// import { trpc } from "@/trpc/client";
 // import type { SubscriptionPlan, UserSubscriptionPlan } from "@/types";
 //
 // interface BillingFormButtonProps {

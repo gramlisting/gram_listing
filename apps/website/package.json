@@ -15,7 +15,6 @@
   "dependencies": {
     "@dinero.js/currencies": "2.0.0-alpha.14",
     "@formatjs/intl-localematcher": "0.5.4",
-    "@gramlisting/api": "workspace:*",
     "@gramlisting/auth": "workspace:*",
     "@gramlisting/ui": "workspace:*",
     "@hookform/resolvers": "3.3.4",

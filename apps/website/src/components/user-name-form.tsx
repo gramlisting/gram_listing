@@ -23,7 +23,6 @@ import { Label } from "@gramlisting/ui/label";
 import { toast } from "@gramlisting/ui/use-toast";
 
 import { userNameSchema } from "@/lib/validations/user";
-import { trpc } from "@/trpc/client";
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, "id" | "name">;

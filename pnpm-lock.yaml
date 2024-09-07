@@ -39,9 +39,6 @@ importers:
       '@formatjs/intl-localematcher':
         specifier: 0.5.4
         version: 0.5.4
-      '@gramlisting/api':
-        specifier: workspace:*
-        version: link:../../packages/api
       '@gramlisting/auth':
         specifier: workspace:*
         version: link:../../packages/auth
@@ -305,6 +302,18 @@ importers:
       '@t3-oss/env-nextjs':
         specifier: 0.8.0
         version: 0.8.0(typescript@5.5.4)(zod@3.22.4)
+      '@telegram-auth/react':
+        specifier: ^1.0.4
+        version: 1.0.4(react@18.3.1)
+      '@telegram-auth/server':
+        specifier: ^1.0.4
+        version: 1.0.4
+      '@vercel/postgres-kysely':
+        specifier: 0.8.0
+        version: 0.8.0(kysely@0.27.3)
+      kysely:
+        specifier: 0.27.3
+        version: 0.27.3
       next:
         specifier: 14.2.5
         version: 14.2.5(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -499,9 +508,15 @@ importers:
       cmdk:
         specifier: 0.2.1
         version: 0.2.1(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion:
+        specifier: 11.0.3
+        version: 11.0.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       lucide-react:
         specifier: ^0.439.0
         version: 0.439.0(react@18.3.1)
+      next:
+        specifier: ^14.2.8
+        version: 14.2.8(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tailwind-merge:
         specifier: 1.14.0
         version: 1.14.0

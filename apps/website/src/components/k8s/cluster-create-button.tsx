@@ -12,7 +12,6 @@ import { buttonVariants, type ButtonProps } from "@gramlisting/ui/button";
 import * as Icons from "@gramlisting/ui/icons";
 import { toast } from "@gramlisting/ui/use-toast";
 
-import { trpc } from "@/trpc/client";
 
 interface K8sCreateButtonProps extends ButtonProps {
   customProp?: string;
