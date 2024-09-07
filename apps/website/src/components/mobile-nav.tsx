@@ -1,8 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 
-import { cn } from "@gramlisting/ui";
-import * as Icons from "@gramlisting/ui/icons";
+import {cn} from "@/lib/utils";
+import * as Icons from "@/components/icons";
 
 import { siteConfig } from "@/config/site";
 import { useLockBody } from "@/hooks/use-lock-body";

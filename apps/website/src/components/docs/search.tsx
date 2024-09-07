@@ -2,9 +2,9 @@
 
 import * as React from "react";
 
-import { cn } from "@gramlisting/ui";
-import { Input } from "@gramlisting/ui/input";
-import { toast } from "@gramlisting/ui/use-toast";
+import {cn} from "@/lib/utils";
+import { Input } from "@/components/ui/input";
+import {toast} from "@/hooks/use-toast";
 
 interface DocsSearchProps extends React.HTMLAttributes<HTMLFormElement> {
   lang: string;

@@ -1,6 +1,6 @@
-import { Meteors } from "@gramlisting/ui/meteors";
 
 import type { Meteor } from "@/types/meteors";
+import {Meteors} from "@/components/uix/meteors";
 
 export function MeteorsCard({ meteor }: { meteor: Meteor }) {
   return (

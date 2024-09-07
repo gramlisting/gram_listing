@@ -1,4 +1,4 @@
-import TextReveal from "@gramlisting/ui/text-reveal";
+import TextReveal from "@/components/uix/text-reveal";
 
 export function WordReveal() {
   return (

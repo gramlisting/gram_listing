@@ -1,16 +1,8 @@
-import { FollowerPointerCard } from "@gramlisting/ui/following-pointer";
 
 export function XBlogArticle() {
   return (
     <div className="w-80">
-      <FollowerPointerCard
-        title={
-          <TitleComponent
-            title={blogContent.author}
-            avatar={blogContent.authorAvatar}
-          />
-        }
-      >
+
         <div className="group relative h-full overflow-hidden rounded-2xl border border-zinc-100 bg-white transition duration-200 hover:shadow-xl">
           <div className="aspect-w-16 aspect-h-10 xl:aspect-w-16 xl:aspect-h-10 relative w-full overflow-hidden rounded-tl-lg rounded-tr-lg bg-gray-100">
             <img
@@ -34,7 +26,6 @@ export function XBlogArticle() {
             </div>
           </div>
         </div>
-      </FollowerPointerCard>
     </div>
   );
 }

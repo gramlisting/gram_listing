@@ -1,5 +1,5 @@
-import { cn } from "@gramlisting/ui";
-import Marquee from "@gramlisting/ui/marquee";
+import {cn} from "@/lib/utils";
+import Marquee from "@/components/uix/marquee";
 
 const reviews = [
   {

@@ -4,7 +4,7 @@ import { LoginButton } from "@telegram-auth/react";
 import { type User } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 
-import { Button } from "@gramlisting/ui/button";
+import {Button} from "@/components/ui/button";
 
 import { LocaleChange } from "@/components/locale-change";
 import useScroll from "@/hooks/use-scroll";

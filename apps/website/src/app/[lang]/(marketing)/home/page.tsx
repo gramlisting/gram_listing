@@ -1,10 +1,9 @@
 import Link from "next/link";
 
-import * as Icons from "@gramlisting/ui/icons";
+import * as Icons from "@/components/icons";
 
 import { XBlogArticle } from "@/components/blog-card";
 import { Comments } from "@/components/comments";
-import { DocumentGuide } from "@/components/document-guide";
 import { FeaturesCard } from "@/components/features-card";
 import { MeteorsCard } from "@/components/meteors-card";
 import { Questions } from "@/components/questions";
@@ -40,9 +39,7 @@ export default async function IndexPage({
           <div className="flex flex-col items-start">
             <div className="flex flex-col pt-4 md:pt-28 lg:pt-28 xl:pt-28">
               <Link href="https://document.saasfly.io" target="_blank">
-                <DocumentGuide>
-                  {dict.marketing.introducing || "Introducing Saasfly"}
-                </DocumentGuide>
+               cxxx
               </Link>
 
               <div className="mt-6">

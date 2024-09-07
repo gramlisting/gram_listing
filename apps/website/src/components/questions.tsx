@@ -3,7 +3,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@gramlisting/ui/accordion";
+} from "@/components/ui/accordion";
 
 export function Questions() {
   return (

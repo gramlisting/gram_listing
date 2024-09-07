@@ -4,8 +4,8 @@ import {getDictionary} from "@/lib/get-dictionary";
 import VoteButton from "@/components/vote-button";
 import {MeteorsCard} from "@/components/meteors-card";
 import {FeaturesCard} from "@/components/features-card";
-import {Input} from "@gramlisting/ui/input";
-import {Button} from "@gramlisting/ui/button";
+import {Button} from "@/components/ui/button";
+import {Input} from "@/components/ui/input";
 
 
 const meteors_data: Meteor = {
@@ -154,9 +154,6 @@ export default async function IndexPage({
   };
 }) {
   const dict = await getDictionary(lang);
-  console.info(lang);
-  console.debug(gemsData);
-  console.debug(dict);
 
   return (
     <>

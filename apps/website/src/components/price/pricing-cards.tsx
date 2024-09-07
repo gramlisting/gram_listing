@@ -13,9 +13,9 @@ import {
 import Link from "next/link";
 import Balancer from "react-wrap-balancer";
 
-import { Button, buttonVariants } from "@gramlisting/ui/button";
-import * as Icons from "@gramlisting/ui/icons";
-import { Switch } from "@gramlisting/ui/switch";
+import { Button, buttonVariants } from "@/components/ui/button";
+import * as Icons from "@/components/icons";
+import { Switch } from "@/components/ui/switch";
 
 import { BillingFormButton } from "@/components/price/billing-form-button";
 import { priceDataMap } from "@/config/price/price-data";

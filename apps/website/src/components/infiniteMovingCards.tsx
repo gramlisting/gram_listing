@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
+import {InfiniteMovingCards} from "@/components/uix/infinite-moving-cards";
 
-import { InfiniteMovingCards } from "@gramlisting/ui/infinite-moving-cards";
 
 export function InfiniteMovingCardss() {
   return (

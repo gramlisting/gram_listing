@@ -5,7 +5,6 @@
 //   AccordionContent,
 //   AccordionItem,
 //   AccordionTrigger,
-// } from "@gramlisting/ui/accordion";
 //
 // import type { Locale } from "@/config/i18n-config";
 // import { priceFaqDataMap } from "@/config/price/price-faq-data";

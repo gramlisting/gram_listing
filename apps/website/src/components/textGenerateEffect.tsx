@@ -1,6 +1,7 @@
 "use client";
 
-import { TextGenerateEffect } from "@gramlisting/ui/text-generate-effect";
+
+import {TextGenerateEffect} from "@/components/uix/text-generate-effect";
 
 const words = `Your complete All-in-One solution for building SaaS services. From coding to product launch, we have
             everything you need covered!`;

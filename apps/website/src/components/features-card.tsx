@@ -1,7 +1,8 @@
 "use client";
 
-import { cn } from "@gramlisting/ui";
-import { AnimatedList } from "@gramlisting/ui/animated-list";
+
+import {cn} from "@/lib/utils";
+import {AnimatedList} from "@/components/uix/animated-list";
 
 interface Item {
   name: string;

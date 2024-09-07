@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@gramlisting/ui";
-import * as Icons from "@gramlisting/ui/icons";
+import {cn} from "@/lib/utils";
+import * as Icons from "@/components/icons";
 
 import type { SidebarNavItem } from "@/types";
 

@@ -1,19 +1,19 @@
 import { Inter as FontSans } from "next/font/google";
 import localFont from "next/font/local";
 
-import "@/styles/globals.css";
+import "@/app/globals.css";
 
 // import { NextDevtoolsProvider } from "@next-devtools/core";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { Toaster } from "@gramlisting/ui/toaster";
 import {i18n} from "@/config/i18n-config";
 import {siteConfig} from "@/config/site";
 import {AuthProvider} from "@/app/auth-provider";
 import {ThemeProvider} from "@/components/theme-provider";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
 import {cn} from "@/lib/utils";
+import {Toaster} from "@/components/ui/toaster";
 
 const fontSans = FontSans({
   subsets: ["latin"],

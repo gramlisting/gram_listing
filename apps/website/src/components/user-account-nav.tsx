@@ -10,7 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@gramlisting/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 import { UserAvatar } from "@/components/user-avatar";
 

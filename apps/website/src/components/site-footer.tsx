@@ -1,7 +1,7 @@
 import * as React from "react";
 import Image from "next/image";
 
-import { cn } from "@gramlisting/ui";
+import {cn} from "@/lib/utils";
 
 import { ModeToggle } from "@/components/mode-toggle";
 

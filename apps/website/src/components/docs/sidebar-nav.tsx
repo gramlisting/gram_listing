@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@gramlisting/ui";
+import {cn} from "@/lib/utils";
 import {SidebarNavItem} from "@/types";
 
 

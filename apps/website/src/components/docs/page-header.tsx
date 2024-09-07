@@ -1,4 +1,4 @@
-import { cn } from "@gramlisting/ui";
+import {cn} from "@/lib/utils";
 
 interface DocsPageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
   heading: string;

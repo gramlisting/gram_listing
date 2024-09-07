@@ -2,8 +2,8 @@
 
 import { Drawer } from "vaul";
 
-import { cn } from "@gramlisting/ui";
-import { Dialog, DialogContent, DialogTitle } from "@gramlisting/ui/dialog";
+import {cn} from "@/lib/utils";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 import useMediaQuery from "@/hooks/use-media-query";
 

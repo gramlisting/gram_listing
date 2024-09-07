@@ -6,11 +6,10 @@ import * as React from "react";
 //navigate to new page
 import { useRouter } from "next/navigation";
 
-import { cn } from "@gramlisting/ui";
+import {cn} from "@/lib/utils";
 //button self design
-import { buttonVariants, type ButtonProps } from "@gramlisting/ui/button";
-import * as Icons from "@gramlisting/ui/icons";
-import { toast } from "@gramlisting/ui/use-toast";
+import { buttonVariants, type ButtonProps } from "@/components/ui/button";
+import * as Icons from "@/components/icons";
 
 
 interface K8sCreateButtonProps extends ButtonProps {

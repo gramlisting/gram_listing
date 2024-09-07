@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { signIn } from "next-auth/react";
 
-import { Button } from "@gramlisting/ui/button";
-import * as Icons from "@gramlisting/ui/icons";
+import {Button} from "@/components/ui/button";
+import * as Icons from "@/components/icons";
 
 import { Modal } from "@/components/modal";
 import { siteConfig } from "@/config/site";

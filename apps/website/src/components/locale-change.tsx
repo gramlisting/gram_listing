@@ -3,16 +3,11 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 
-import { Button } from "@gramlisting/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@gramlisting/ui/dropdown-menu";
-import * as Icons from "@gramlisting/ui/icons";
+import * as Icons from "@/components/icons";
 
 import { i18n, localeMap } from "@/config/i18n-config";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {Button} from "@/components/ui/button";
 
 export function LocaleChange({ url }: { url: string }) {
   const router = useRouter();

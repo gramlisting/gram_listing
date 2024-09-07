@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
+import {WobbleCard} from "@/components/uix/wobble-card";
 
-import { WobbleCard } from "@gramlisting/ui/wobble-card";
 
 export function WobbleCardShow() {
   return (

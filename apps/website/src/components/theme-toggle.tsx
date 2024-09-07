@@ -3,14 +3,14 @@
 import * as React from "react";
 import { useTheme } from "next-themes";
 
-import { Button } from "@gramlisting/ui/button";
+import {Button} from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@gramlisting/ui/dropdown-menu";
-import * as Icons from "@gramlisting/ui/icons";
+} from "@/components/ui/dropdown-menu";
+import * as Icons from "@/components/icons";
 
 export default function ThemeToggle(props: {
   align?: "center" | "start" | "end";

@@ -2,16 +2,16 @@
 
 import * as React from "react";
 import { useSearchParams } from "next/navigation";
-import { cn } from "@gramlisting/ui";
-import { buttonVariants } from "@gramlisting/ui/button";
-import * as Icons from "@gramlisting/ui/icons";
-import { Input } from "@gramlisting/ui/input";
-import { Label } from "@gramlisting/ui/label";
-import { toast } from "@gramlisting/ui/use-toast";
+import {cn} from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import * as Icons from "@/components/icons";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import {toast} from "@/hooks/use-toast";
 
 type Dictionary = Record<string, string>;
 

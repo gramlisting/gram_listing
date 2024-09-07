@@ -3,14 +3,10 @@
 import * as React from "react";
 import { useTheme } from "next-themes";
 
-import { Button } from "@gramlisting/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@gramlisting/ui/dropdown-menu";
-import * as Icons from "@gramlisting/ui/icons";
+
+import * as Icons from "@/components/icons";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {Button} from "@/components/ui/button";
 
 export function ModeToggle() {
   const { setTheme } = useTheme();

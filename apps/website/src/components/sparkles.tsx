@@ -4,7 +4,6 @@ import React from "react";
 
 // import { useTheme } from "next-themes";
 
-// import { SparklesCore } from "@gramlisting/ui/sparkles";
 
 export function Sparkless() {
   // const { theme } = useTheme();

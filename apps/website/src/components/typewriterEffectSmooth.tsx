@@ -1,6 +1,6 @@
 "use client";
 
-import { TextGenerateEffect } from "@gramlisting/ui/typewriter-effect";
+import {TextGenerateEffect} from "@/components/uix/typewriter-effect";
 
 export function TypewriterEffectSmooths() {
   const words = [
