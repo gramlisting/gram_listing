@@ -5,6 +5,7 @@ import VoteButton from "@/components/vote-button";
 import {MeteorsCard} from "@/components/meteors-card";
 import {FeaturesCard} from "@/components/features-card";
 import {Input} from "@gramlisting/ui/input";
+import {Button} from "@gramlisting/ui/button";
 
 
 const meteors_data: Meteor = {
@@ -165,6 +166,7 @@ export default async function IndexPage({
             <h1 className="mb-6 text-center text-3xl font-bold dark:text-zinc-100 md:text-5xl">
               Explore Web3 Gems on Telegram
             </h1>
+            <Button variant={"default"}>ABC</Button>
           </div>
           <div className="mb-6 w-full text-xl dark:text-zinc-100  md:text-xl ">
             <Input

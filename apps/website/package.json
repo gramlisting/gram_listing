@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -16,7 +16,6 @@
     "@dinero.js/currencies": "2.0.0-alpha.14",
     "@formatjs/intl-localematcher": "0.5.4",
     "@gramlisting/auth": "workspace:*",
-    "@gramlisting/ui": "workspace:*",
     "@hookform/resolvers": "3.3.4",
     "@next/mdx": "14.2.5",
     "@radix-ui/react-avatar": "1.1.1-rc.5",
@@ -58,7 +57,6 @@
   "devDependencies": {
     "@gramlisting/eslint-config": "workspace:*",
     "@gramlisting/prettier-config": "workspace:*",
-    "@gramlisting/tailwind-config": "workspace:*",
     "@gramlisting/typescript-config": "workspace:*",
     "@next-devtools/core": "0.2.0",
     "@types/mdx": "2.0.10",

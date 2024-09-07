@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "pnpm -r run dev",
-    "build": "pnpm -r run build"
+    "build": "pnpm -r run build",
+    "static_url": "export https_proxy='' http_proxy='' all_proxy='' &&  ngrok http --domain=witty-thankful-swine.ngrok-free.app https://localhost:3000"
   },
   "engines": {
     "node": ">=22",
