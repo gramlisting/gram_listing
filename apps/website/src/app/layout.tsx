@@ -7,13 +7,13 @@ import "@/styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { cn } from "@gramlisting/ui";
 import { Toaster } from "@gramlisting/ui/toaster";
 import {i18n} from "@/config/i18n-config";
 import {siteConfig} from "@/config/site";
 import {AuthProvider} from "@/app/auth-provider";
 import {ThemeProvider} from "@/components/theme-provider";
 import {TailwindIndicator} from "@/components/tailwind-indicator";
+import {cn} from "@/lib/utils";
 
 const fontSans = FontSans({
   subsets: ["latin"],
