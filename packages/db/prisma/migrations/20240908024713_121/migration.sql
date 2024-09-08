@@ -20,9 +20,6 @@ CREATE TYPE "Network" AS ENUM ('Mainnet', 'Testnet', 'Custom');
 CREATE TYPE "ChatStatus" AS ENUM ('creator', 'member', 'administrator', 'restricted', 'left', 'kicked');
 
 -- CreateEnum
-CREATE TYPE "CoinStatus" AS ENUM ('Init', 'Processing', 'Deploying', 'Deployed', 'FailedToDeploy', 'DexListing', 'FailedToListing', 'DexListed');
-
--- CreateEnum
 CREATE TYPE "ImageScenario" AS ENUM ('Project', 'Gem', 'Matcher', 'Newsletter', 'Service', 'Tool', 'Other');
 
 -- CreateEnum
@@ -121,7 +118,7 @@ CREATE TABLE "Project" (
     "tgChat" TEXT,
     "tgBot" TEXT,
     "iconImg" TEXT,
-    "imgServcie" "ImageService" NOT NULL,
+    "imgService" "ImageService" NOT NULL,
     "upvote" INTEGER NOT NULL DEFAULT 1,
     "extJson" JSONB,
     "createBy" BIGINT,
@@ -158,7 +155,7 @@ CREATE TABLE "Image" (
     "id" BIGSERIAL NOT NULL,
     "scenario" "ImageScenario" NOT NULL,
     "bindId" BIGINT,
-    "servcie" "ImageService" NOT NULL,
+    "service" "ImageService" NOT NULL,
     "url" TEXT NOT NULL,
     "extJson" JSONB,
     "createBy" BIGINT,
