@@ -25,9 +25,7 @@
     "prisma_studio": "pnpm with-env  prisma studio"
   },
   "dependencies": {
-    "@prisma/client": "^5.19.1",
-    "@vercel/postgres-kysely": "0.10.0",
-    "kysely": "0.27.4"
+    "@prisma/client": "^5.19.1"
   },
   "devDependencies": {
     "@gramlisting/eslint-config": "workspace:*",
@@ -38,7 +36,6 @@
     "eslint": "9.10.0",
     "prettier": "3.3.3",
     "prisma": "5.19.1",
-    "prisma-kysely": "1.8.0",
     "typescript": "5.5.4"
   },
   "eslintConfig": {
