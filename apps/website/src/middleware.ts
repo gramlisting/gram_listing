@@ -6,7 +6,12 @@ import { withAuth } from "next-auth/middleware";
 
 import { i18n } from "@/config/i18n-config";
 
-const noNeedProcessRoute = [".*\\.png", ".*\\.jpg", ".*\\.opengraph-image.png"];
+const noNeedProcessRoute = [
+  "/api/public(.*)",
+  ".*\\.png",
+  ".*\\.jpg",
+  ".*\\.opengraph-image.png",
+];
 
 const noRedirectRoute = ["/api(.*)", "/trpc(.*)", "/admin"];
 
