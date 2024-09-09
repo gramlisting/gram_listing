@@ -21,7 +21,7 @@ export type Category = {
     createBy: string | null;
     createDt: Generated<Timestamp>;
     modifyBy: string | null;
-    modifyDt: Timestamp;
+    modifyDt: Timestamp | null;
 };
 export type Gem = {
     id: Generated<string>;
@@ -36,7 +36,7 @@ export type Gem = {
     createBy: string | null;
     createDt: Generated<Timestamp>;
     modifyBy: string | null;
-    modifyDt: Timestamp;
+    modifyDt: Timestamp | null;
 };
 export type GemsOnUsers = {
     userId: string;
@@ -83,7 +83,7 @@ export type Project = {
     createBy: string | null;
     createDt: Generated<Timestamp>;
     modifyBy: string | null;
-    modifyDt: Timestamp;
+    modifyDt: Timestamp | null;
 };
 export type ProjectVote = {
     id: Generated<string>;
@@ -100,7 +100,7 @@ export type Task = {
     createBy: string | null;
     createDt: Generated<Timestamp>;
     modifyBy: string | null;
-    modifyDt: Timestamp;
+    modifyDt: Timestamp | null;
     gemId: string;
 };
 export type TasksOnUsers = {
@@ -129,7 +129,7 @@ export type User = {
     createBy: string | null;
     createDt: Generated<Timestamp>;
     modifyBy: string | null;
-    modifyDt: Timestamp;
+    modifyDt: Timestamp | null;
 };
 export type UserAction = {
     id: Generated<string>;
@@ -144,7 +144,7 @@ export type UserAction = {
     createBy: string | null;
     createDt: Generated<Timestamp>;
     modifyBy: string | null;
-    modifyDt: Timestamp;
+    modifyDt: Timestamp | null;
 };
 export type WalletInfo = {
     id: Generated<string>;
@@ -158,7 +158,7 @@ export type WalletInfo = {
     createBy: string | null;
     createDt: Generated<Timestamp>;
     modifyBy: string | null;
-    modifyDt: Timestamp;
+    modifyDt: Timestamp | null;
 };
 export type DB = {
     CategoriesOnProjects: CategoriesOnProjects;

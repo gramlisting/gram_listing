@@ -32,13 +32,13 @@ model User {
   createBy    BigInt?
   createDt    DateTime       @default(now())
   modifyBy    BigInt?
-  modifyDt    DateTime       @updatedAt
+  modifyDt    DateTime?      @updatedAt
   gems        GemsOnUsers[]
   tasks       TasksOnUsers[]
 }
 
 model UserAction {
-  id                BigInt   @id @default(autoincrement())
+  id                BigInt    @id @default(autoincrement())
   opTgId            BigInt
   opDisplayName     String?
   actionType        String
@@ -48,9 +48,9 @@ model UserAction {
   targetDisplayName String?
   extJson           Json?
   createBy          BigInt?
-  createDt          DateTime @default(now())
+  createDt          DateTime  @default(now())
   modifyBy          BigInt?
-  modifyDt          DateTime @unique @updatedAt
+  modifyDt          DateTime? @updatedAt
 
   @@index([opTgId])
 }
@@ -67,7 +67,7 @@ model WalletInfo {
   createBy BigInt?
   createDt DateTime   @default(now())
   modifyBy BigInt?
-  modifyDt DateTime   @updatedAt
+  modifyDt DateTime?  @updatedAt
 
   @@index([address])
 }
@@ -81,7 +81,7 @@ model Category {
   createBy             BigInt?
   createDt             DateTime               @default(now())
   modifyBy             BigInt?
-  modifyDt             DateTime               @updatedAt
+  modifyDt             DateTime?              @updatedAt
   CategoriesOnProjects CategoriesOnProjects[]
 }
 
@@ -105,7 +105,7 @@ model Project {
   createBy             BigInt?
   createDt             DateTime               @default(now())
   modifyBy             BigInt?
-  modifyDt             DateTime               @updatedAt
+  modifyDt             DateTime?              @updatedAt
   CategoriesOnProjects CategoriesOnProjects[]
 }
 
@@ -156,7 +156,7 @@ model Gem {
   createBy  BigInt?
   createDt  DateTime      @default(now())
   modifyBy  BigInt?
-  modifyDt  DateTime      @updatedAt
+  modifyDt  DateTime?     @updatedAt
   users     GemsOnUsers[]
   tasks     Task[]
 }
@@ -211,7 +211,7 @@ model Task {
   createBy     BigInt?
   createDt     DateTime       @default(now())
   modifyBy     BigInt?
-  modifyDt     DateTime       @updatedAt
+  modifyDt     DateTime?      @updatedAt
   gem          Gem            @relation(fields: [gemId], references: [id])
   gemId        BigInt
   TasksOnUsers TasksOnUsers[]
