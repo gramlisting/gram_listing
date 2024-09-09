@@ -8,8 +8,6 @@ import { z } from "zod";
 
 const appRouter = router({
   userList: publicProcedure.query(async () => {
-    // Retrieve users from a datasource, this is an imaginary database
-    // const users = await db.user.findMany();
     return await db.selectFrom("User").where("id", "!=", "1").execute();
   }),
   userById: publicProcedure.input(z.string()).query(async (opts) => {
@@ -39,6 +37,4 @@ const appRouter = router({
     }),
 });
 
-// Export type router type signature,
-// NOT the router itself.
 export type AppRouter = typeof appRouter;
