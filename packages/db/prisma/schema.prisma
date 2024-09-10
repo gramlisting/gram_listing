@@ -67,9 +67,13 @@ model WalletInfo {
 
 model Category {
   id                   BigInt                 @id @default(autoincrement())
-  ecosystem            Ecosystem
-  lv1                  String
-  lv2                  String
+  ecosystem            Ecosystem              @default(TON)
+  name                 String
+  tagline              String
+  desc                 String?                @db.Text
+  priority             Int                    @default(100)
+  isSuper              Boolean                @default(false)
+  superCatagory        String?
   extJson              Json?
   createBy             BigInt?
   createDt             DateTime               @default(now())
@@ -85,7 +89,8 @@ model Project {
   tagline              String?
   desc                 String?                @db.Text
   langCodes            String?
-  ecosystem            Ecosystem              @default(Toncoin)
+  ecosystem            Ecosystem              @default(TON)
+  specialty            String?
   website              String?
   twitter              String?
   tgChannel            String?
@@ -240,12 +245,11 @@ enum LoginType {
 }
 
 enum Ecosystem {
-  Bitcoin
-  Ethereum
+  BTC
+  ETH
   BNB
-  Solana
-  Toncoin
-  Artela
+  SOL
+  TON
 }
 
 enum Blockchain {
