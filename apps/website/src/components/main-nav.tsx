@@ -9,7 +9,8 @@ import * as Icons from "@/components/icons";
 
 import { MobileNav } from "@/components/mobile-nav";
 import type { MainNavItem } from "@/types";
-import {cn} from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { GramListingBrand } from "@/components/icons";
 
 interface MainNavProps {
   items?: MainNavItem[];
@@ -31,17 +32,7 @@ export function MainNav({ items, children, params: { lang } }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href={`/${lang}`} className="hidden items-center space-x-1 md:flex">
-        <div>
-          <Image
-            src="/images/logos/logo-dark-white.svg"
-            width="38"
-            height="38"
-            alt=""
-          />
-        </div>
-        <div className="nosw whitespace-nowrap text-lg font-semibold">
-          Gram Listing
-        </div>
+        <Icons.GramListingBrand className={"w-32 h-7"} />
       </Link>
       {items?.length ? (
         <nav className="hidden gap-6 md:flex">
