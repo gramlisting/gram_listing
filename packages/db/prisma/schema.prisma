@@ -68,7 +68,7 @@ model WalletInfo {
 model Category {
   id                   BigInt                 @id @default(autoincrement())
   ecosystem            Ecosystem              @default(TON)
-  name                 String
+  name                 String                 @unique
   tagline              String
   desc                 String?                @db.Text
   priority             Int                    @default(100)

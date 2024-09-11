@@ -97,8 +97,8 @@ export default async function IndexPage({
 
   return (
     <>
-      <section className="w-full px-8 pt-10 sm:px-0 sm:pt-0 md:px-0 md:pt-0 xl:px-0 xl:pt-0 ">
-        <div className="flex h-full w-full flex-col items-center  pt-8 ">
+      <section className="w-full">
+        <div className="flex h-full w-full flex-col items-center pt-8 ">
           <div>
             <h1 className="mb-2 text-center text-3xl font-bold dark:text-zinc-100 md:text-5xl">
               Explore Web3 Gems on Telegram
@@ -122,7 +122,7 @@ export default async function IndexPage({
           </div>
 
           {/* gems start   xl:h-[100vh]*/}
-          <section className="w-full px-2 sm:px-12 md:px-24 xl:px-40 ">
+          <section className="w-full px-2 sm:px-12 md:px-24 xl:px-40">
             <div className="grid grid-cols-1 gap-10 pb-6 md:pb-8 lg:grid-cols-3">
               <div className="col-span-2 flex flex-col items-start">
                 <div className="flex w-full flex-col pt-4 md:pt-8">
@@ -187,7 +187,7 @@ export default async function IndexPage({
           {/* gems end*/}
 
           {/* project start*/}
-          <section className="w-full px-2 sm:px-12 md:px-24 xl:px-40 pb-2">
+          <section className="w-full pb-2 px-2 sm:px-12 md:px-24 xl:px-40 ">
             <div className="flex flex-col items-start">
               <div className="flex w-full flex-col pt-1 md:pt-2">
                 <div className="space-y-1">
@@ -196,8 +196,10 @@ export default async function IndexPage({
                       Explore all products
                     </h2>
                     <div className="flex space-x-2">
-                      <button className="font-semibold ">TON Ecosystem</button>
-                      <button className="text-gray-400">#Categories</button>
+                      <button className="font-semibold text-gray-400">
+                        TON Ecosystem
+                      </button>
+                      {/*<button className="text-gray-400">#Categories</button>*/}
                     </div>
                   </div>
                   <div className="mx-auto max-w-2xl px-2 py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">

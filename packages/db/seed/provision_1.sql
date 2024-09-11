@@ -33,5 +33,3 @@ INSERT INTO public."Category" (ecosystem, name, "tagline", "desc", priority,"isS
 INSERT INTO public."Category" (ecosystem, name, "tagline", "desc", priority,"isSuper", "superCatagory", "extJson", "createBy", "createDt", "modifyBy", "modifyDt") VALUES ('TON', 'DAO', 'Decentralized Autonomous Organization',null, 52, false,'Infrastructure', null, null, '2024-09-10 02:46:19.181', null, null);
 INSERT INTO public."Category" (ecosystem, name, "tagline", "desc", priority,"isSuper", "superCatagory", "extJson", "createBy", "createDt", "modifyBy", "modifyDt") VALUES ('TON', 'RWA', 'Real World Assets tokenized on blockchain',null, 53, false,'Infrastructure', null, null, '2024-09-10 02:46:19.181', null, null);
 
-
-INSERT INTO public."Category" (ecosystem, name, "tagline", "desc", priority,"isSuper", "superCatagory", "extJson", "createBy", "createDt", "modifyBy", "modifyDt") VALUES ('TON', 'RWA Test _f-dd', 'Real World Assets tokenized on blockchain',null, 53, false,'Infrastructure', null, null, '2024-09-10 02:46:19.181', null, null);
