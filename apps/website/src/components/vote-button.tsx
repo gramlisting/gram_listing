@@ -16,14 +16,15 @@ const VoteButton = () => {
     <button
       onClick={handleClick}
       className={`flex h-12 w-12 flex-col items-center justify-center rounded-sm border
-       ${isVoted ? "border-orange-600" : "border-gray-600"}
+       ${isVoted ? "border-destructive" : "border-gray-600"}
        `}
     >
       <div className={`flex h-4 w-4 items-center justify-center`}>
         <ThumbsUp
           size={32}
           // color={`${isVoted ? "#orange-600" : "#gray-600"}`}
-          color={`${isVoted ? "#ea580c" : "#4b5563"}`}
+          // color={`${isVoted ? "#ea580c" : "#4b5563"}`}
+          className={`${isVoted ? "text-destructive" : "text-white"}`}
           strokeWidth={1.25}
         />
       </div>
