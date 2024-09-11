@@ -1,13 +1,14 @@
-import { Suspense } from "react";
 import { Locale } from "@/config/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
+import { authOptions } from "@gramlisting/auth";
+import { getServerSession } from "next-auth";
+import { Suspense } from "react";
 import { NavBar } from "@/components/navbar";
 import { getMarketingConfig } from "@/config/ui/marketing";
 import { ModalProvider } from "@/components/modal-provider";
 import { SiteFooter } from "@/components/site-footer";
-import { authOptions } from "@gramlisting/auth";
-import { getServerSession } from "next-auth";
 import { env } from "@/env.mjs";
+
 export default async function MarketingLayout({
   children,
   params: { lang },

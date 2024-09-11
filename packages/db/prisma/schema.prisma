@@ -73,6 +73,7 @@ model Category {
   desc                 String?                @db.Text
   priority             Int                    @default(100)
   isSuper              Boolean                @default(false)
+  appsCount            Int                    @default(0)
   superCatagory        String?
   extJson              Json?
   createBy             BigInt?

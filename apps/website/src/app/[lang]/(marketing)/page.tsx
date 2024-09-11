@@ -6,6 +6,7 @@ import { MeteorsCard } from "@/components/meteors-card";
 import { FeaturesCard } from "@/components/features-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { db } from "@gramlisting/db";
 
 const meteors_data: Meteor = {
   name: "Submit your project",
@@ -14,74 +15,7 @@ const meteors_data: Meteor = {
   button_content: "Submit",
   url: "https://t.me/andrew_tonx",
 };
-const projectData = [
-  {
-    title: "Wallets",
-    description: "Store and manage your crypto assets",
-    topList: [
-      {
-        image: "",
-      },
-      {
-        image: "",
-      },
-    ],
-    count: 11,
-  },
-  {
-    title: "DEX Exchanges",
-    description: "Buy, sell and swap TON or wTON",
-    topList: [
-      {
-        image: "",
-      },
-      {
-        image: "",
-      },
-    ],
-    count: 12,
-  },
-  {
-    title: "Explorers",
-    description: "Browse transactions on The Open Network",
-    topList: [
-      {
-        image: "",
-      },
-      {
-        image: "",
-      },
-    ],
-    count: 13,
-  },
-  {
-    title: "Gambling",
-    description: "Discover gambling apps on TON",
-    topList: [
-      {
-        image: "",
-      },
-      {
-        image: "",
-      },
-    ],
-    count: 14,
-  },
-  {
-    title: "Launchpads",
-    description:
-      "Discover Launchpads on TON – the gateway to exciting new projects. Explore opportunities to participate in token launches, investments, and early-stage blockchain ventures.",
-    topList: [
-      {
-        image: "",
-      },
-      {
-        image: "",
-      },
-    ],
-    count: 15,
-  },
-];
+
 const gemsData = [
   {
     title: "DuckChain Giveaway",
@@ -154,12 +88,17 @@ export default async function IndexPage({
 }) {
   const dict = await getDictionary(lang);
 
+  let categories = await db.category.findMany({
+    where: { ecosystem: "TON" },
+    orderBy: { priority: "asc" },
+  });
+
   return (
     <>
-      <section className="w-full px-8 pt-10 sm:px-0 sm:pt-0 md:px-0 md:pt-0 xl:px-0 xl:pt-0">
-        <div className="flex h-full w-full flex-col items-center pb-[100px] pt-10">
+      <section className="w-full px-8 pt-10 sm:px-0 sm:pt-0 md:px-0 md:pt-0 xl:px-0 xl:pt-0 ">
+        <div className="flex h-full w-full flex-col items-center  pt-8 ">
           <div>
-            <h1 className="mb-6 text-center text-3xl font-bold dark:text-zinc-100 md:text-5xl">
+            <h1 className="mb-2 text-center text-3xl font-bold dark:text-zinc-100 md:text-5xl">
               Explore Web3 Gems on Telegram
             </h1>
             <div className={"flex gap-2 pb-2"}>
@@ -180,9 +119,9 @@ export default async function IndexPage({
             />
           </div>
 
-          {/* gems start*/}
+          {/* gems start   xl:h-[100vh]*/}
           <section className="w-full px-2 sm:px-12 md:px-24 xl:h-[100vh] xl:px-40 ">
-            <div className="grid grid-cols-1 gap-10 pb-10 md:pb-40 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-10 pb-6 md:pb-8 lg:grid-cols-3">
               <div className="col-span-2 flex flex-col items-start">
                 <div className="flex w-full flex-col pt-4 md:pt-8">
                   {/*  gems start*/}
@@ -246,9 +185,9 @@ export default async function IndexPage({
           {/* gems end*/}
 
           {/* project start*/}
-          <section className="w-full px-2 sm:px-12 md:px-24 xl:h-[100vh] xl:px-40 ">
+          <section className="w-full px-2 sm:px-12 md:px-24 xl:px-40 pb-2">
             <div className="flex flex-col items-start">
-              <div className="flex w-full flex-col pt-4 md:pt-8">
+              <div className="flex w-full flex-col pt-1 md:pt-2">
                 <div className="space-y-1">
                   <div className=" flex items-center  justify-between border-b border-gray-600">
                     <h2 className="mb-1 text-xl font-bold">
@@ -261,14 +200,14 @@ export default async function IndexPage({
                   </div>
                   <div className="mx-auto max-w-2xl px-2 py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
                     <div className=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 ">
-                      {projectData.map((item, index) => (
+                      {categories.map((item, index) => (
                         <div
                           key={index}
                           className="bg group relative rounded-lg border bg-background p-4 shadow-lg dark:border-[#443c3c]"
                         >
-                          <div className="mb-1 text-xl">{item.title}</div>
+                          <div className="mb-1 text-xl">{item.name}</div>
                           <div className="mb-3 text-gray-500">
-                            {item.description}
+                            {item.tagline}
                           </div>
                           <div className="flex items-center gap-1">
                             <img
@@ -286,7 +225,9 @@ export default async function IndexPage({
                               alt=""
                               className={"h-12 w-12"}
                             />{" "}
-                            <div className="text-gray-500">+{item.count}</div>
+                            <div className="text-gray-500">
+                              +{item.appsCount}
+                            </div>
                           </div>
                         </div>
                       ))}
