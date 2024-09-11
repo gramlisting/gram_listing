@@ -7,6 +7,8 @@ import { FeaturesCard } from "@/components/features-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { db } from "@gramlisting/db";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const meteors_data: Meteor = {
   name: "Submit your project",
@@ -120,7 +122,7 @@ export default async function IndexPage({
           </div>
 
           {/* gems start   xl:h-[100vh]*/}
-          <section className="w-full px-2 sm:px-12 md:px-24 xl:h-[100vh] xl:px-40 ">
+          <section className="w-full px-2 sm:px-12 md:px-24 xl:px-40 ">
             <div className="grid grid-cols-1 gap-10 pb-6 md:pb-8 lg:grid-cols-3">
               <div className="col-span-2 flex flex-col items-start">
                 <div className="flex w-full flex-col pt-4 md:pt-8">
@@ -201,9 +203,19 @@ export default async function IndexPage({
                   <div className="mx-auto max-w-2xl px-2 py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
                     <div className=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 ">
                       {categories.map((item, index) => (
-                        <div
+                        <Link
+                          href={`/${lang}/p/category/${item.name}`}
                           key={index}
-                          className="bg group relative rounded-lg border bg-background p-4 shadow-lg dark:border-[#443c3c]"
+                          className={cn(
+                            //   basic logic
+                            "cursor-pointer group relative rounded-lg border bg-background p-4 shadow-lg dark:border-[#443c3c]",
+                            // animation styles
+                            "overflow-hidden transform transition-all duration-200 ease-in-out hover:scale-[103%]",
+                            // light styles
+                            "bg-white [box-shadow:0_0_0_1px_rgba(0,0,0,.03),0_2px_4px_rgba(0,0,0,.05),0_12px_24px_rgba(0,0,0,.05)]",
+                            // dark styles
+                            "transform-gpu dark:bg-transparent dark:backdrop-blur-md dark:[border:1px_solid_rgba(255,255,255,.1)] dark:[box-shadow:0_-20px_80px_-20px_#ffffff1f_inset]",
+                          )}
                         >
                           <div className="mb-1 text-xl">{item.name}</div>
                           <div className="mb-3 text-gray-500">
@@ -229,7 +241,7 @@ export default async function IndexPage({
                               +{item.appsCount}
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       ))}
                     </div>
                   </div>
