@@ -23,6 +23,22 @@ export default async function CategoryDetailPage({
     return "404";
   }
 
+  await db.categoriesOnProjects.findMany({
+    where: { categoryId: category.id },
+  });
+
+  const projects = await db.project.findMany({
+    where: {
+      categories: {
+        some: {
+          category: {
+            id: category.id,
+          },
+        },
+      },
+    },
+  });
+
   return (
     <>
       <section className={cn("w-full", "pb-2 px-2 sm:px-12 md:px-24 xl:px-40")}>
@@ -46,7 +62,14 @@ export default async function CategoryDetailPage({
                   <div className="mx-auto max-w-2xl px-2 py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
                     <div className=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 ">
                       {/*  card start*/}
-                      card
+                      {projects.map((project, index) => {
+                        return (
+                          <div key={index}>
+                            {project.name}
+                            <img src={project.iconImg!} alt="" />
+                          </div>
+                        );
+                      })}
                       {/*  card end*/}
                     </div>
                   </div>

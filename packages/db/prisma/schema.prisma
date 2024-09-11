@@ -66,46 +66,47 @@ model WalletInfo {
 }
 
 model Category {
-  id                   BigInt                 @id @default(autoincrement())
-  ecosystem            Ecosystem              @default(TON)
-  name                 String                 @unique
-  tagline              String
-  desc                 String?                @db.Text
-  priority             Int                    @default(100)
-  isSuper              Boolean                @default(false)
-  appsCount            Int                    @default(0)
-  superCatagory        String?
-  extJson              Json?
-  createBy             BigInt?
-  createDt             DateTime               @default(now())
-  modifyBy             BigInt?
-  modifyDt             DateTime?              @updatedAt
-  CategoriesOnProjects CategoriesOnProjects[]
+  id            BigInt                 @id @default(autoincrement())
+  ecosystem     Ecosystem              @default(TON)
+  name          String                 @unique
+  tagline       String
+  desc          String?                @db.Text
+  priority      Int                    @default(100)
+  isSuper       Boolean                @default(false)
+  appsCount     Int                    @default(0)
+  superCatagory String?
+  extJson       Json?
+  createBy      BigInt?
+  createDt      DateTime               @default(now())
+  modifyBy      BigInt?
+  modifyDt      DateTime?              @updatedAt
+  projects      CategoriesOnProjects[]
 }
 
 model Project {
-  id                   BigInt                 @id @default(autoincrement())
-  ownerTgId            BigInt
-  name                 String?
-  tagline              String?
-  desc                 String?                @db.Text
-  langCodes            String?
-  ecosystem            Ecosystem              @default(TON)
-  specialty            String?
-  website              String?
-  twitter              String?
-  tgChannel            String?
-  tgChat               String?
-  tgBot                String?
-  iconImg              String?
-  imgService           ImageService
-  upvote               Int                    @default(1)
-  extJson              Json?
-  createBy             BigInt?
-  createDt             DateTime               @default(now())
-  modifyBy             BigInt?
-  modifyDt             DateTime?              @updatedAt
-  CategoriesOnProjects CategoriesOnProjects[]
+  id         BigInt                 @id @default(autoincrement())
+  ownerTgId  BigInt
+  name       String?
+  tagline    String?
+  desc       String?                @db.Text
+  langCodes  String?
+  ecosystem  Ecosystem              @default(TON)
+  specialty  String?
+  website    String?
+  twitter    String?
+  tgChannel  String?
+  tgChat     String?
+  tgBot      String?
+  iconImg    String?
+  imgService ImageService
+  upvote     Int                    @default(1)
+  starLv     String?
+  extJson    Json?
+  createBy   BigInt?
+  createDt   DateTime               @default(now())
+  modifyBy   BigInt?
+  modifyDt   DateTime?              @updatedAt
+  categories CategoriesOnProjects[]
 }
 
 model CategoriesOnProjects {
@@ -203,17 +204,17 @@ model GemVote {
 }
 
 model Task {
-  id           BigInt         @id @default(autoincrement())
-  type         TaskType
-  target       String
-  extJson      Json?
-  createBy     BigInt?
-  createDt     DateTime       @default(now())
-  modifyBy     BigInt?
-  modifyDt     DateTime?      @updatedAt
-  gem          Gem            @relation(fields: [gemId], references: [id])
-  gemId        BigInt
-  TasksOnUsers TasksOnUsers[]
+  id       BigInt         @id @default(autoincrement())
+  type     TaskType
+  target   String
+  extJson  Json?
+  createBy BigInt?
+  createDt DateTime       @default(now())
+  modifyBy BigInt?
+  modifyDt DateTime?      @updatedAt
+  gem      Gem            @relation(fields: [gemId], references: [id])
+  gemId    BigInt
+  users    TasksOnUsers[]
 
   @@index([gemId])
 }
