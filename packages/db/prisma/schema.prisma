@@ -104,7 +104,9 @@ model Project {
   iconImg    String?
   imgService ImageService?          @default(AliyunOSS)
   upvote     Int                    @default(1)
-  starLv     String?
+  rating     String?
+  priority   Int                    @default(100)
+  verified   Boolean                @default(false)
   deleted    Boolean                @default(false)
   extJson    Json?
   createBy   BigInt?
