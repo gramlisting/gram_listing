@@ -5,7 +5,7 @@ import { db } from "@gramlisting/db";
 
 interface CategoryDetailProps {
   params: {
-    name: string;
+    key: string;
     lang: Locale;
   };
 }
@@ -14,10 +14,10 @@ export default async function CategoryDetailPage({
   params,
 }: CategoryDetailProps) {
   // let name = params.name;
-  let name: string = decodeURIComponent(params.name);
+  let key: string = decodeURIComponent(params.key);
   let lang = params.lang;
 
-  let category = await db.category.findUnique({ where: { name: name } });
+  let category = await db.category.findUnique({ where: { key: key } });
 
   if (!category) {
     return "404";

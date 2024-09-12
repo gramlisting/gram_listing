@@ -66,21 +66,25 @@ model WalletInfo {
 }
 
 model Category {
-  id            BigInt                 @id @default(autoincrement())
-  ecosystem     Ecosystem              @default(TON)
-  name          String                 @unique
-  tagline       String
-  desc          String?                @db.Text
-  priority      Int                    @default(100)
-  isSuper       Boolean                @default(false)
-  appsCount     Int                    @default(0)
-  superCatagory String?
-  extJson       Json?
-  createBy      BigInt?
-  createDt      DateTime               @default(now())
-  modifyBy      BigInt?
-  modifyDt      DateTime?              @updatedAt
-  projects      CategoriesOnProjects[]
+  id              BigInt                 @id @default(autoincrement())
+  ecosystem       Ecosystem              @default(TON)
+  key             String                 @unique
+  name            String                 @unique
+  tagline         String
+  desc            String?                @db.Text
+  priority        Int                    @default(100)
+  isSuperCategory Boolean                @default(false)
+  superCatagory   String?
+  appsCount       Int                    @default(0)
+  iconImg         String?
+  imgService      ImageService?          @default(AliyunOSS)
+  extJson         Json?
+  deleted         Boolean                @default(false)
+  createBy        BigInt?
+  createDt        DateTime               @default(now())
+  modifyBy        BigInt?
+  modifyDt        DateTime?              @updatedAt
+  projects        CategoriesOnProjects[]
 }
 
 model Project {
@@ -98,9 +102,10 @@ model Project {
   tgChat     String?
   tgBot      String?
   iconImg    String?
-  imgService ImageService
+  imgService ImageService?          @default(AliyunOSS)
   upvote     Int                    @default(1)
   starLv     String?
+  deleted    Boolean                @default(false)
   extJson    Json?
   createBy   BigInt?
   createDt   DateTime               @default(now())
@@ -136,7 +141,7 @@ model Image {
   id       BigInt        @id @default(autoincrement())
   scenario ImageScenario
   bindId   BigInt?
-  service  ImageService
+  service  ImageService  @default(AliyunOSS)
   url      String
   extJson  Json?
   createBy BigInt?
@@ -152,6 +157,7 @@ model Gem {
   upvote    Int           @default(1)
   tagline   String?
   rules     String?       @db.Text
+  deleted   Boolean       @default(false)
   extJson   Json?
   createBy  BigInt?
   createDt  DateTime      @default(now())

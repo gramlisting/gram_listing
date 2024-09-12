@@ -206,7 +206,7 @@ export default async function IndexPage({
                     <div className=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 ">
                       {categories.map((item, index) => (
                         <Link
-                          href={`/${lang}/p/category/${item.name}`}
+                          href={`/${lang}/p/category/${item.key}`}
                           key={index}
                           className={cn(
                             //   basic logic
