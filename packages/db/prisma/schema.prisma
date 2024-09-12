@@ -71,7 +71,7 @@ model Category {
   key             String                 @unique
   name            String                 @unique
   tagline         String
-  desc            String?                @db.Text
+  description     String?                @db.Text
   priority        Int                    @default(100)
   isSuperCategory Boolean                @default(false)
   superCatagory   String?
@@ -88,32 +88,32 @@ model Category {
 }
 
 model Project {
-  id         BigInt                 @id @default(autoincrement())
-  ownerTgId  BigInt
-  name       String?
-  tagline    String?
-  desc       String?                @db.Text
-  langCodes  String?
-  ecosystem  Ecosystem              @default(TON)
-  specialty  String?
-  website    String?
-  twitter    String?
-  tgChannel  String?
-  tgChat     String?
-  tgBot      String?
-  iconImg    String?
-  imgService ImageService?          @default(AliyunOSS)
-  upvote     Int                    @default(1)
-  rating     String?
-  priority   Int                    @default(100)
-  verified   Boolean                @default(false)
-  deleted    Boolean                @default(false)
-  extJson    Json?
-  createBy   BigInt?
-  createDt   DateTime               @default(now())
-  modifyBy   BigInt?
-  modifyDt   DateTime?              @updatedAt
-  categories CategoriesOnProjects[]
+  id          BigInt                 @id @default(autoincrement())
+  ownerTgId   BigInt
+  name        String?
+  tagline     String?
+  description String?                @db.Text
+  langCodes   String?
+  ecosystem   Ecosystem              @default(TON)
+  specialty   String?
+  website     String?
+  twitter     String?
+  tgChannel   String?
+  tgChat      String?
+  tgBot       String?
+  iconImg     String?
+  imgService  ImageService?          @default(AliyunOSS)
+  upvote      Int                    @default(1)
+  rating      String?
+  priority    Int                    @default(100)
+  verified    Boolean                @default(false)
+  deleted     Boolean                @default(false)
+  extJson     Json?
+  createBy    BigInt?
+  createDt    DateTime               @default(now())
+  modifyBy    BigInt?
+  modifyDt    DateTime?              @updatedAt
+  categories  CategoriesOnProjects[]
 }
 
 model CategoriesOnProjects {

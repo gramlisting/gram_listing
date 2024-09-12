@@ -92,11 +92,18 @@ CREATE TABLE "WalletInfo" (
 CREATE TABLE "Category" (
     "id" BIGSERIAL NOT NULL,
     "ecosystem" "Ecosystem" NOT NULL DEFAULT 'TON',
+    "key" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "tagline" TEXT NOT NULL,
     "desc" TEXT,
     "priority" INTEGER NOT NULL DEFAULT 100,
+    "isSuperCategory" BOOLEAN NOT NULL DEFAULT false,
     "superCatagory" TEXT,
+    "appsCount" INTEGER NOT NULL DEFAULT 0,
+    "iconImg" TEXT,
+    "imgService" "ImageService" DEFAULT 'AliyunOSS',
     "extJson" JSONB,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "createBy" BIGINT,
     "createDt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "modifyBy" BIGINT,
@@ -114,14 +121,19 @@ CREATE TABLE "Project" (
     "desc" TEXT,
     "langCodes" TEXT,
     "ecosystem" "Ecosystem" NOT NULL DEFAULT 'TON',
+    "specialty" TEXT,
     "website" TEXT,
     "twitter" TEXT,
     "tgChannel" TEXT,
     "tgChat" TEXT,
     "tgBot" TEXT,
     "iconImg" TEXT,
-    "imgService" "ImageService" NOT NULL,
+    "imgService" "ImageService" DEFAULT 'AliyunOSS',
     "upvote" INTEGER NOT NULL DEFAULT 1,
+    "rating" TEXT,
+    "priority" INTEGER NOT NULL DEFAULT 100,
+    "verified" BOOLEAN NOT NULL DEFAULT false,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "extJson" JSONB,
     "createBy" BIGINT,
     "createDt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -157,7 +169,7 @@ CREATE TABLE "Image" (
     "id" BIGSERIAL NOT NULL,
     "scenario" "ImageScenario" NOT NULL,
     "bindId" BIGINT,
-    "service" "ImageService" NOT NULL,
+    "service" "ImageService" NOT NULL DEFAULT 'AliyunOSS',
     "url" TEXT NOT NULL,
     "extJson" JSONB,
     "createBy" BIGINT,
@@ -176,6 +188,7 @@ CREATE TABLE "Gem" (
     "upvote" INTEGER NOT NULL DEFAULT 1,
     "tagline" TEXT,
     "rules" TEXT,
+    "deleted" BOOLEAN NOT NULL DEFAULT false,
     "extJson" JSONB,
     "createBy" BIGINT,
     "createDt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -250,6 +263,12 @@ CREATE UNIQUE INDEX "WalletInfo_address_key" ON "WalletInfo"("address");
 
 -- CreateIndex
 CREATE INDEX "WalletInfo_address_idx" ON "WalletInfo"("address");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Category_key_key" ON "Category"("key");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Category_name_key" ON "Category"("name");
 
 -- CreateIndex
 CREATE INDEX "CategoriesOnProjects_categoryId_idx" ON "CategoriesOnProjects"("categoryId");
