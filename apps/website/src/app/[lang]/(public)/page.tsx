@@ -1,7 +1,6 @@
 import { Meteor } from "@/types/meteors";
 import { Locale } from "@/config/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
-import VoteButton from "@/components/vote-button";
 import { MeteorsCard } from "@/components/meteors-card";
 import { FeaturesCard } from "@/components/features-card";
 import { Button } from "@/components/ui/button";
@@ -9,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { db } from "@gramlisting/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import VoteButton from "@/components/vote-button";
 
 const meteors_data: Meteor = {
   name: "Submit your project",
@@ -161,10 +161,7 @@ export default async function IndexPage({
                           </div>
                         </div>
                         <div className="flex items-center space-x-4">
-                          <VoteButton />
-                          <button
-                            className={`text-lg ${item.isFeatured ? "text-red-600" : "text-gray-400"}`}
-                          ></button>
+                          <VoteButton type={"gem"} initCount={99999} />
                         </div>
                       </div>
                     ))}

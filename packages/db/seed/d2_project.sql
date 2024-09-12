@@ -170,7 +170,7 @@ insert into public."Project" ("ownerTgId", "name", tagline, "langCodes", website
                               "tgBot", "iconImg")
 values (5499157826,
         'SwapWallet',
-        '🚀 Your key to seamless crypto transactions on Telegram!\n\n',
+        '🚀 Your key to seamless crypto transactions on Telegram!',
         'zh en fa ru fr',
         'https://',
         null,
@@ -230,7 +230,7 @@ insert into public."Project" ("ownerTgId", "name", tagline, "langCodes", website
                               "tgBot", "iconImg")
 values (5499157826,
         'Tonspay',
-        'Tonspay is a crypto payment solution support for multichains . also supports MPC wallet .\n',
+        'Tonspay is a crypto payment solution support for multi-chains . also supports MPC wallet.',
         'en',
         'https://',
         'https://twitter.com/tonsprotocols',
@@ -407,3 +407,15 @@ values (5499157826,
         null,
         null,
         'https://ton.app/media/ff593c17-3d01-48dd-889d-df73f6611052.jpg');
+-- insert into public."Project" ("ownerTgId", "name", tagline, "langCodes", website, twitter, "tgChannel", "tgChat",
+--                               "tgBot", "iconImg")
+-- values (5499157826,
+--         'Ammer Wallet Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.',
+--         'Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.Secure mobile wallet for your crypto and NFTs.',
+--         'en ru',
+--         'https://ammer.app',
+--         null,
+--         null,
+--         null,
+--         null,
+--         'https://ton.app/media/ff593c17-3d01-48dd-889d-df73f6611052.jpg');

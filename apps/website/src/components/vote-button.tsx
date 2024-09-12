@@ -2,10 +2,16 @@
 
 import React, { useState } from "react";
 import { ThumbsUp } from "lucide-react";
+import BigNumber from "bignumber.js"; // 引入 BigNumber.js 库
 
-const VoteButton = () => {
+interface CategoryDetailProps {
+  type: "project" | "gem";
+  initCount: number;
+}
+
+export default function VoteButton({ type, initCount }: CategoryDetailProps) {
   const [isVoted, setIsVoted] = useState(false);
-  const [count, setCount] = useState(123);
+  const [count, setCount] = useState(initCount);
 
   const handleClick = () => {
     setIsVoted(!isVoted);
@@ -30,17 +36,40 @@ const VoteButton = () => {
       </div>
       <span
         className={`mt-1 text-sm font-semibold 
-      
       dark:text-gray-400   
-      
       ${isVoted ? "font-bold text-black dark:text-white" : " text-gray-800 dark:text-gray-400 "}
-      
       `}
       >
-        {count}
+        {formatNumber(count)}
       </span>
     </button>
   );
-};
+}
+// 定义格式化数字的函数
+function formatNumber(num: number): string {
+  const bigNum = new BigNumber(num); // 将输入数字转换为 BigNumber 对象
 
-export default VoteButton;
+  if (bigNum.isLessThan(1000)) {
+    return bigNum.toString(); // 如果小于 1000，直接返回原数字字符串形式
+  } else if (bigNum.isLessThan(1_000_000)) {
+    // 如果在 1000 到 1,000,000 之间
+    const thousands = bigNum.dividedBy(1000); // 除以 1000 得到千位数
+    // 判断是否是整数
+    if (thousands.mod(1).isZero()) {
+      return `${thousands.toString()}K`; // 是整数则直接返回
+    } else {
+      // 如果不是整数，取整数部分和一位小数部分
+      const formatted = thousands.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1); // 保留1位小数，不考虑四舍五入
+      return `${formatted}K`;
+    }
+  } else {
+    // 如果大于等于 1,000,000
+    const millions = bigNum.dividedBy(1_000_000); // 除以 1,000,000 得到百万位数
+    if (millions.mod(1).isZero()) {
+      return `${millions.toString()}M`; // 是整数则直接返回
+    } else {
+      const formatted = millions.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1); // 保留1位小数，不考虑四舍五入
+      return `${formatted}M`;
+    }
+  }
+}

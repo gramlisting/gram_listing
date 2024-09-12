@@ -107,6 +107,7 @@ model Project {
   rating      String?
   priority    Int                    @default(100)
   verified    Boolean                @default(false)
+  promoted    Boolean                @default(false)
   deleted     Boolean                @default(false)
   extJson     Json?
   createBy    BigInt?
