@@ -1,0 +1,77 @@
+// bot1 DevTonMasterBot 在群里监听到群有成员变动消息 chat_member
+// 消息的内容是 bot2 ton_master_bot 加入到群里
+// 操作人是 from andrew_tonx
+// 监听到消息的是 "me" bot1
+
+
+{
+  "update": {
+    "update_id": 624568012,
+    "chat_member": {
+      "chat": {
+        "id": -1002042368722,
+        "title": "TON Hash",
+        "username": "ton_hash_chat",
+        "type": "supergroup"
+      },
+      "from": {
+        "id": 5499157826,
+        "is_bot": false,
+        "first_name": "Andrew",
+        "last_name": "Tonx 💎",
+        "username": "andrew_tonx",
+        "language_code": "en",
+        "is_premium": true
+      },
+      "date": 1705734525,
+      "old_chat_member": {
+        "user": {
+          "id": 6974828212,
+          "is_bot": true,
+          "first_name": "TON Master Bot",
+          "username": "ton_master_bot"
+        },
+        "status": "kicked",
+        "until_date": 0
+      },
+      "new_chat_member": {
+        "user": {
+          "id": 6974828212,
+          "is_bot": true,
+          "first_name": "TON Master Bot",
+          "username": "ton_master_bot"
+        },
+        "can_be_edited": false,
+        "can_manage_chat": true,
+        "can_change_info": true,
+        "can_delete_messages": true,
+        "can_invite_users": true,
+        "can_restrict_members": true,
+        "can_pin_messages": true,
+        "can_manage_topics": false,
+        "can_promote_members": false,
+        "can_manage_video_chats": false,
+        "is_anonymous": false,
+        "can_manage_voice_chats": false,
+        "status": "administrator"
+      }
+    }
+  },
+  "api": {
+    "raw": {},
+    "config": {}
+  },
+  "me": {
+    "id": 6913454221,
+    "is_bot": true,
+    "first_name": "Dev Ton Master",
+    "username": "DevTonMasterBot",
+    "can_join_groups": true,
+    "can_read_all_group_messages": true,
+    "supports_inline_queries": false
+  },
+  "config": {
+    "botAdminId": 5499157826,
+    "isDeveloper": true
+  }
+}
