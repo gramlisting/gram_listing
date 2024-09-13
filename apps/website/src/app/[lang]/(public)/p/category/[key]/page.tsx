@@ -77,6 +77,7 @@ export default async function CategoryDetailPage({
                             "flex items-center justify-between p-1",
                             "p-4",
                             "bg-zinc-900",
+                            "rounded-s",
                           )}
                         >
                           <div className="flex items-center space-x-4">
