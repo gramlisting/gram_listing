@@ -1,0 +1,12 @@
+node_modules/
+.idea
+./build
+./dist/
+./dist/*
+.wrangler
+.env
+.env.aws
+.env.local
+!/dist/
+/dist/
+/.env.aliyun
