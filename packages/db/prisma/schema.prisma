@@ -135,6 +135,30 @@ model ProjectVote {
   @@index([voteBy])
 }
 
+model ProjectUserHistory {
+  id        BigInt   @id @default(autoincrement())
+  projectId BigInt
+  entityId  String
+  dateIndex String
+  extJson   Json?
+  createBy  BigInt?
+  createDt  DateTime @default(now())
+
+  @@unique([projectId, entityId, dateIndex])
+}
+
+model NotcoinGoodTable {
+  id        BigInt   @id @default(autoincrement())
+  projectId BigInt
+  entityId  String
+  dateIndex String
+  extJson   Json?
+  createBy  BigInt?
+  createDt  DateTime @default(now())
+
+  @@unique([projectId, entityId, dateIndex])
+}
+
 model Image {
   id       BigInt        @id @default(autoincrement())
   scenario ImageScenario
