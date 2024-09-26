@@ -1,8 +1,20 @@
 import type { Locale } from "@/config/i18n-config";
 import { cn } from "@/lib/utils";
 import { BreadcrumbNav } from "@/components/breadcrumb";
-import { db } from "@gramlisting/db";
+import db from "@gramlisting/db";
 import VoteButton from "@/components/vote-button";
+import { Prisma } from "@prisma/client";
+
+const imageUrl = (imgJson: Prisma.JsonValue) => {
+  if (typeof imgJson === "object" && imgJson !== null) {
+    Object.entries(imgJson).map(([key, value]) => {
+      if (key === "url") {
+        return value;
+      }
+    });
+  }
+  return "";
+};
 
 interface CategoryDetailProps {
   params: {
@@ -82,7 +94,7 @@ export default async function CategoryDetailPage({
                         >
                           <div className="flex items-center space-x-4">
                             <img
-                              src={project.iconImg!}
+                              src={imageUrl(project.iconImg)}
                               alt={project.name!}
                               className="h-16 w-16 rounded"
                             />

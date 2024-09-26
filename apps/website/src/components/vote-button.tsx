@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ThumbsUp } from "lucide-react";
-import BigNumber from "bignumber.js"; // 引入 BigNumber.js 库
+import BigNumber from "bignumber.js";
 
 interface CategoryDetailProps {
   type: "project" | "gem";
@@ -45,30 +45,25 @@ export default function VoteButton({ type, initCount }: CategoryDetailProps) {
     </button>
   );
 }
-// 定义格式化数字的函数
 function formatNumber(num: number): string {
-  const bigNum = new BigNumber(num); // 将输入数字转换为 BigNumber 对象
+  const bigNum = new BigNumber(num);
 
   if (bigNum.isLessThan(1000)) {
-    return bigNum.toString(); // 如果小于 1000，直接返回原数字字符串形式
+    return bigNum.toString();
   } else if (bigNum.isLessThan(1_000_000)) {
-    // 如果在 1000 到 1,000,000 之间
-    const thousands = bigNum.dividedBy(1000); // 除以 1000 得到千位数
-    // 判断是否是整数
+    const thousands = bigNum.dividedBy(1000);
     if (thousands.mod(1).isZero()) {
-      return `${thousands.toString()}K`; // 是整数则直接返回
+      return `${thousands.toString()}K`;
     } else {
-      // 如果不是整数，取整数部分和一位小数部分
-      const formatted = thousands.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1); // 保留1位小数，不考虑四舍五入
+      const formatted = thousands.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1);
       return `${formatted}K`;
     }
   } else {
-    // 如果大于等于 1,000,000
-    const millions = bigNum.dividedBy(1_000_000); // 除以 1,000,000 得到百万位数
+    const millions = bigNum.dividedBy(1_000_000);
     if (millions.mod(1).isZero()) {
-      return `${millions.toString()}M`; // 是整数则直接返回
+      return `${millions.toString()}M`;
     } else {
-      const formatted = millions.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1); // 保留1位小数，不考虑四舍五入
+      const formatted = millions.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1);
       return `${formatted}M`;
     }
   }

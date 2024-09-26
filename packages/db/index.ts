@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Category, PrismaClient } from "@prisma/client";
 
 class Db {
   static instance: PrismaClient | undefined;
@@ -17,23 +17,25 @@ class Db {
     }
   }
 }
+//
+// // 在进程退出时调用关闭方法
+// process.on("SIGINT", async () => {
+//   await Db.close();
+//   console.info("========================");
+//   console.info("== DB close at SIGINT =");
+//   console.info("========================");
+//   process.exit(0);
+// });
+//
+// process.on("SIGTERM", async () => {
+//   await Db.close();
+//   console.info("#########################");
+//   console.info("## DB close at SIGTERM #");
+//   console.info("#########################");
+//   process.exit(0);
+// });
 
-// 在进程退出时调用关闭方法
-process.on("SIGINT", async () => {
-  await Db.close();
-  console.info("========================");
-  console.info("== DB close at SIGINT =");
-  console.info("========================");
-  process.exit(0);
-});
-
-process.on("SIGTERM", async () => {
-  await Db.close();
-  console.info("#########################");
-  console.info("## DB close at SIGTERM #");
-  console.info("#########################");
-  process.exit(0);
-});
+let a: Category[] = [];
 
 const db = Db.getInstance();
-export { db };
+export default db;

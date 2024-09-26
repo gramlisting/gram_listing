@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { db } from "@gramlisting/db";
+import db from "@gramlisting/db";
 import superjson from "superjson";
 //
 // export async function GET(request: NextRequest) {

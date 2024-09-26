@@ -35,7 +35,7 @@
     "@grammyjs/i18n": "^1.0.2",
     "@grammyjs/menu": "^1.2.2",
     "@grammyjs/types": "^3.11.0",
-    "@prisma/client": "5.17.0",
+    "@prisma/client": "latest",
     "@ton-community/func-js": "^0.7.0",
     "@ton/core": "^0.56.3",
     "@ton/crypto": "^3.3.0",

@@ -7,7 +7,8 @@
     "dev": "pnpm with-env next dev --experimental-https",
     "build": "pnpm with-env next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma_generate": "pnpm with-env prisma generate --schema=../../packages/db/prisma/schema.prisma"
   },
   "engines": {
     "node": ">=22",
@@ -21,6 +22,7 @@
     "@hookform/resolvers": "3.9.0",
     "@js-temporal/polyfill": "^0.4.4",
     "@next/mdx": "14.2.8",
+    "@prisma/client":"latest",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-avatar": "1.1.1-rc.5",
     "@radix-ui/react-checkbox": "^1.1.1",
@@ -92,6 +94,7 @@
     "next-contentlayer2": "0.5.0",
     "postcss": "^8",
     "prettier": "3.3.3",
+    "prisma": "^5.20.0",
     "rehype": "13.0.1",
     "rehype-autolink-headings": "7.1.0",
     "rehype-pretty-code": "0.14.0",

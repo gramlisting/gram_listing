@@ -9,25 +9,23 @@ datasource db {
 }
 
 model User {
-  id          BigInt         @id @default(autoincrement())
+  id          BigInt    @id @default(autoincrement())
   loginType   LoginType
-  tgId        BigInt         @unique
+  tgId        BigInt    @unique
   tgUsername  String?
   firstName   String?
   lastName    String?
   profileImg  String?
-  isPremium   Boolean        @default(false)
-  refCode     String         @unique
+  isPremium   Boolean   @default(false)
+  refCode     String    @unique
   referBy     BigInt?
   langCode    String?
-  totalPoints BigInt         @default(0)
+  totalPoints BigInt    @default(0)
   extJson     Json?
   createBy    BigInt?
-  createDt    DateTime       @default(now())
+  createDt    DateTime  @default(now())
   modifyBy    BigInt?
-  modifyDt    DateTime?      @updatedAt
-  gems        GemsOnUsers[]
-  tasks       TasksOnUsers[]
+  modifyDt    DateTime? @updatedAt
 }
 
 model UserAction {
@@ -67,7 +65,6 @@ model WalletInfo {
 
 model Category {
   id              BigInt                 @id @default(autoincrement())
-  ecosystem       Ecosystem              @default(TON)
   key             String                 @unique
   name            String                 @unique
   tagline         String
@@ -94,15 +91,13 @@ model Project {
   tagline     String?
   description String?                @db.Text
   langCodes   String?
-  ecosystem   Ecosystem              @default(TON)
   specialty   String?
   website     String?
-  twitter     String?
-  tgChannel   String?
-  tgChat      String?
-  tgBot       String?
-  iconImg     String?
-  imgService  ImageService?          @default(AliyunOSS)
+  twitters    Json?
+  tgChannels  Json?
+  tgChats     Json?
+  tgBots      Json?
+  iconImg     Json?
   upvote      Int                    @default(1)
   rating      String?
   priority    Int                    @default(100)
@@ -151,82 +146,82 @@ model Image {
   createDt DateTime      @default(now())
 }
 
-model Gem {
-  id        BigInt        @id @default(autoincrement())
-  ownerTgId BigInt
-  projectId BigInt?
-  name      String
-  type      GemType
-  upvote    Int           @default(1)
-  tagline   String?
-  rules     String?       @db.Text
-  deleted   Boolean       @default(false)
-  extJson   Json?
-  createBy  BigInt?
-  createDt  DateTime      @default(now())
-  modifyBy  BigInt?
-  modifyDt  DateTime?     @updatedAt
-  users     GemsOnUsers[]
-  tasks     Task[]
-}
-
-model GemsOnUsers {
-  user     User        @relation(fields: [userId], references: [id])
-  userId   BigInt
-  gem      Gem         @relation(fields: [gemId], references: [id])
-  gemId    BigInt
-  state    CommonState
-  extJson  Json?
-  createBy String
-  createDt DateTime    @default(now())
-
-  @@id([userId, gemId])
-  @@index([userId])
-  @@index([gemId])
-}
-
-model TasksOnUsers {
-  user     User        @relation(fields: [userId], references: [id])
-  userId   BigInt
-  task     Task        @relation(fields: [taskId], references: [id])
-  taskId   BigInt
-  gemId    BigInt?
-  state    CommonState
-  extJson  Json?
-  createBy String
-  createDt DateTime    @default(now())
-
-  @@id([userId, taskId])
-  @@index([userId])
-  @@index([taskId])
-}
-
-model GemVote {
-  id       BigInt   @id @default(autoincrement())
-  gemId    BigInt
-  voteBy   BigInt
-  createBy BigInt?
-  createDt DateTime @default(now())
-
-  @@index([gemId])
-  @@index([voteBy])
-}
-
-model Task {
-  id       BigInt         @id @default(autoincrement())
-  type     TaskType
-  target   String
-  extJson  Json?
-  createBy BigInt?
-  createDt DateTime       @default(now())
-  modifyBy BigInt?
-  modifyDt DateTime?      @updatedAt
-  gem      Gem            @relation(fields: [gemId], references: [id])
-  gemId    BigInt
-  users    TasksOnUsers[]
-
-  @@index([gemId])
-}
+// model Gem {
+//   id        BigInt        @id @default(autoincrement())
+//   ownerTgId BigInt
+//   projectId BigInt?
+//   name      String
+//   type      GemType
+//   upvote    Int           @default(1)
+//   tagline   String?
+//   rules     String?       @db.Text
+//   deleted   Boolean       @default(false)
+//   extJson   Json?
+//   createBy  BigInt?
+//   createDt  DateTime      @default(now())
+//   modifyBy  BigInt?
+//   modifyDt  DateTime?     @updatedAt
+//   users     GemsOnUsers[]
+//   tasks     Task[]
+// }
+//
+// model GemsOnUsers {
+//   user     User        @relation(fields: [userId], references: [id])
+//   userId   BigInt
+//   gem      Gem         @relation(fields: [gemId], references: [id])
+//   gemId    BigInt
+//   state    CommonState
+//   extJson  Json?
+//   createBy String
+//   createDt DateTime    @default(now())
+//
+//   @@id([userId, gemId])
+//   @@index([userId])
+//   @@index([gemId])
+// }
+// //
+// // model TasksOnUsers {
+// //   user     User        @relation(fields: [userId], references: [id])
+// //   userId   BigInt
+// //   task     Task        @relation(fields: [taskId], references: [id])
+// //   taskId   BigInt
+// //   gemId    BigInt?
+// //   state    CommonState
+// //   extJson  Json?
+// //   createBy String
+// //   createDt DateTime    @default(now())
+// //
+// //   @@id([userId, taskId])
+// //   @@index([userId])
+// //   @@index([taskId])
+// // }
+// //
+// // model GemVote {
+// //   id       BigInt   @id @default(autoincrement())
+// //   gemId    BigInt
+// //   voteBy   BigInt
+// //   createBy BigInt?
+// //   createDt DateTime @default(now())
+// //
+// //   @@index([gemId])
+// //   @@index([voteBy])
+// // }
+//
+// model Task {
+//   id       BigInt         @id @default(autoincrement())
+//   type     TaskType
+//   target   String
+//   extJson  Json?
+//   createBy BigInt?
+//   createDt DateTime       @default(now())
+//   modifyBy BigInt?
+//   modifyDt DateTime?      @updatedAt
+//   gem      Gem            @relation(fields: [gemId], references: [id])
+//   gemId    BigInt
+//   users    TasksOnUsers[]
+//
+//   @@index([gemId])
+// }
 
 //  ================== enums ==================
 
@@ -253,14 +248,6 @@ enum TaskType {
 enum LoginType {
   TgAuth
   MiniApp
-}
-
-enum Ecosystem {
-  BTC
-  ETH
-  BNB
-  SOL
-  TON
 }
 
 enum Blockchain {
@@ -301,23 +288,24 @@ enum ImageService {
   CloudflareImage
 }
 
-enum GemType {
-  // Bogo
-  Coupon
-  // Contests
-  Cashback
-  Discount
-  FreeTrial
-  // FlashSale
-  Giveaway
-  Groupon
-  Lottery
-  LoyaltyPoints
-  // MysteryGift
-  ReferralBonus
-  SpinTheWheel
-  Whitelist
-  Other
-}
+//
+// enum GemType {
+//   // Bogo
+//   Coupon
+//   // Contests
+//   Cashback
+//   Discount
+//   FreeTrial
+//   // FlashSale
+//   Giveaway
+//   Groupon
+//   Lottery
+//   LoyaltyPoints
+//   // MysteryGift
+//   ReferralBonus
+//   SpinTheWheel
+//   Whitelist
+//   Other
+// }
 
 //  ================== enums end ==================
