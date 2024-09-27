@@ -1,7 +1,7 @@
 import type { Locale } from "@/config/i18n-config";
 import { cn } from "@/lib/utils";
 import { BreadcrumbNav } from "@/components/breadcrumb";
-import db from "@gramlisting/db";
+import { db } from "@gramlisting/db";
 import VoteButton from "@/components/vote-button";
 import { Prisma } from "@prisma/client";
 

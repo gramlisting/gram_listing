@@ -2,7 +2,7 @@
 
 import { Locale } from "@/config/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
-import db from "@gramlisting/db";
+import { db } from "@gramlisting/db";
 import { cn } from "@/lib/utils";
 import { Category } from "@prisma/client";
 import { columns, Payment } from "@/app/[lang]/(public)/components/columns";
