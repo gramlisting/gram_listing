@@ -5,133 +5,160 @@ import { getDictionary } from "@/lib/get-dictionary";
 import { db } from "@gramlisting/db";
 import { cn } from "@/lib/utils";
 import { Category } from "@prisma/client";
-import { columns, Payment } from "@/app/[lang]/(public)/components/columns";
+import { columns, Project } from "@/app/[lang]/(public)/components/columns";
 import { DataTable } from "@/app/[lang]/(public)/components/data-table";
 
-async function getData(): Promise<Payment[]> {
+async function getData(): Promise<Project[]> {
   // Fetch data from your API here.
   return [
     {
-      id: "728ed52f",
-      amount: 11100,
-      status: "pending",
-      email: "m@example.com",
+      id: 1,
+      name: "Dogs",
+      category: ["Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [
+        { id: 123, name: "abc_news", members: 341000, delta: 123 },
+        { id: 123, name: "abc_news", members: 341000, delta: 123 },
+        { id: 123, name: "abc_news", members: 341000, delta: 123 },
+      ],
+      groups: [{ id: 223, name: "abc_groups", members: 211000, delta: 231 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 55 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 132200,
-      status: "pending",
-      email: "m2@example.com",
+      id: 1,
+      name: "Dogs",
+      category: ["TG Mini Game", "Community", "Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000, delta: 123 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 112100,
-      status: "pending",
-      email: "m3@example.com",
+      id: 2,
+      name: "Notcoin",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000, delta: 123 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 13432100,
-      status: "pending",
-      email: "m4@example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 54657100,
-      status: "pending",
-      email: "m@example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 6756100,
-      status: "pending",
-      email: "m@example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 1675600,
-      status: "pending",
-      email: "m@example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 167600,
-      status: "pending",
-      email: "m222@example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 576745100,
-      status: "pending",
-      email: "m@example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 43543100,
-      status: "pending",
-      email: "m@333example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["XXX", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 1223344445,
-      status: "pending",
-      email: "m@TRC-40444example.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Wallet2", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
     {
-      id: "728ed52f",
-      amount: 3454100,
-      status: "pending",
-      email: "m@e5555xample.com",
+      id: 3,
+      name: "Memeclub",
+      category: ["Community22", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, name: "abc_news", members: 341000 }],
+      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
+      socialMedias: [
+        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      ],
     },
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@e66666xample.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 4534100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 154300,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 1454300,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 104540,
-      status: "pending",
-      email: "m@example.com",
-    },
-    // ...
   ];
 }
 
@@ -178,22 +205,14 @@ export default async function IndexPage({
               <div className="flex w-full flex-col pt-1 md:pt-2">
                 <div className="space-y-1">
                   <div className=" flex items-center  justify-between ">
-                    {/*<h2 className="mb-1 text-xl font-bold">*/}
-                    {/*  Explore all products*/}
-                    {/*</h2>*/}
-                    {/*<div className="flex space-x-2">*/}
-                    {/*  <button className="font-semibold text-gray-400">*/}
-                    {/*    TON Ecosystem*/}
-                    {/*  </button>*/}
-                    {/*  /!*<button className="text-gray-400">#Categories</button>*!/*/}
-                    {/*</div>*/}
                     tabs
                   </div>
-                  <div className="mx-auto max-w-2xl px-2 py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
-                    <div className=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 ">
-                      <DataTable columns={columns} data={data} />
-                    </div>
-                  </div>
+                  <DataTable columns={columns} data={data} />
+                  {/*<div className="mx-auto max-w-2xl px-2 py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">*/}
+                  {/*  <div className=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 ">*/}
+                  {/*    <DataTable columns={columns} data={data} />*/}
+                  {/*  </div>*/}
+                  {/*</div>*/}
                 </div>
               </div>
             </div>

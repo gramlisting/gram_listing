@@ -12,49 +12,140 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
+import { JsonArray, JsonObject } from "@prisma/client/runtime/library";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
+
 // This type is used to define the shape of our data.
+interface Channel extends JsonObject {
+  id: number;
+  name: string;
+  members: number;
+  delta?: number;
+}
+
+type ChannelArray<T extends JsonObject> = T[];
+
 // You can use a Zod schema here if you want.
-export type Payment = {
+export type Project = {
   id: number;
   name: string;
   category: string[];
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
+  cloutIndex: number;
+  channels: ChannelArray<Channel>;
+  groups: JsonArray;
+  bots: JsonArray;
+  socialMedias: JsonArray;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Project>[] = [
   {
-    accessorKey: "status",
-    header: "Status",
+    header: "#",
+    cell: (info) => {
+      const pageIndex = info.table.getState().pagination.pageIndex;
+      const pageSize = info.table.getState().pagination.pageSize;
+      const rowIndex = info.row.index;
+      return pageIndex * pageSize + rowIndex + 1;
+    },
   },
   {
-    accessorKey: "email",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
           variant={"ghost"}
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Email
+          Name
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
-  {
-    accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
-    cell: ({ row }) => {
-      let amount = parseFloat(row.getValue("amount"));
-      const formatted = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-      }).format(amount);
 
-      return <div className={"text-right font-medium"}>{formatted}</div>;
+  {
+    header: "Category",
+    cell: ({ row }) => {
+      let projectRow = row.original;
+      let categoryArray = projectRow.category;
+
+      return (
+        <Select defaultValue={categoryArray[0]}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Categories" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel>All Categories</SelectLabel>
+              {categoryArray.map((category, index) => (
+                <SelectItem key={index} value={category}>
+                  {category}
+                </SelectItem>
+              ))}
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      );
     },
   },
+  {
+    accessorKey: "cloutIndex",
+    header: "Clout Index",
+  },
+  {
+    header: "Channel",
+    cell: ({ row }) => {
+      let channels = row.original.channels;
+      return channels.map((channel, index) => (
+        <div key={index}>
+          {channel.name} {channel.members}
+          <span
+            className={cn(
+              channel.delta && channel.delta > 0
+                ? "text-green-400"
+                : "text-red-400",
+            )}
+          >
+            {channel.delta && channel.delta > 0 ? "+" : ""}
+            {channel.delta}
+          </span>
+        </div>
+      ));
+    },
+  },
+  {
+    accessorKey: "groups",
+    header: "Group",
+  },
+  {
+    accessorKey: "bots",
+    header: "Bot",
+  },
+  {
+    accessorKey: "links",
+    header: "Links",
+  },
+  // {
+  //   accessorKey: "amount",
+  //   header: () => <div className="text-right">Amount</div>,
+  //   cell: ({ row }) => {
+  //     let amount = parseFloat(row.getValue("amount"));
+  //     const formatted = new Intl.NumberFormat("en-US", {
+  //       style: "currency",
+  //       currency: "USD",
+  //     }).format(amount);
+  //
+  //     return <div className={"text-right font-medium"}>{formatted}</div>;
+  //   },
+  // },
   {
     id: "actions",
     cell: ({ row }) => {

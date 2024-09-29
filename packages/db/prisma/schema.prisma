@@ -90,7 +90,7 @@ model Project {
   langCodes      String?
   specialty      String?
   website        String?
-  twitters       Json?
+  socialMedias   Json?
   tgChannels     Json?
   tgChats        Json?
   tgBots         Json?
