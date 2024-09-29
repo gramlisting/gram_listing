@@ -11,11 +11,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type Payment = {
-  id: string;
+  id: number;
+  name: string;
+  category: string[];
   amount: number;
   status: "pending" | "processing" | "success" | "failed";
   email: string;
@@ -28,7 +30,17 @@ export const columns: ColumnDef<Payment>[] = [
   },
   {
     accessorKey: "email",
-    header: "Email333",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     accessorKey: "amount",
@@ -58,7 +70,7 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(payment.name)}
             >
               Copy payment ID
             </DropdownMenuItem>

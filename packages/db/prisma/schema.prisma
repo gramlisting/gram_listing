@@ -64,52 +64,85 @@ model WalletInfo {
 }
 
 model Category {
-  id              BigInt                 @id @default(autoincrement())
-  key             String                 @unique
-  name            String                 @unique
-  tagline         String
-  description     String?                @db.Text
-  priority        Int                    @default(100)
-  isSuperCategory Boolean                @default(false)
-  superCatagory   String?
-  appsCount       Int                    @default(0)
-  iconImg         String?
-  imgService      ImageService?          @default(AliyunOSS)
-  extJson         Json?
-  deleted         Boolean                @default(false)
-  createBy        BigInt?
-  createDt        DateTime               @default(now())
-  modifyBy        BigInt?
-  modifyDt        DateTime?              @updatedAt
-  projects        CategoriesOnProjects[]
-}
-
-model Project {
   id          BigInt                 @id @default(autoincrement())
-  ownerTgId   BigInt
-  name        String?
-  tagline     String?
+  key         String                 @unique
+  name        String                 @unique
+  tagline     String
   description String?                @db.Text
-  langCodes   String?
-  specialty   String?
-  website     String?
-  twitters    Json?
-  tgChannels  Json?
-  tgChats     Json?
-  tgBots      Json?
-  iconImg     Json?
-  upvote      Int                    @default(1)
-  rating      String?
   priority    Int                    @default(100)
-  verified    Boolean                @default(false)
-  promoted    Boolean                @default(false)
-  deleted     Boolean                @default(false)
+  appsCount   Int                    @default(0)
+  iconImg     Json?
   extJson     Json?
+  deleted     Boolean                @default(false)
   createBy    BigInt?
   createDt    DateTime               @default(now())
   modifyBy    BigInt?
   modifyDt    DateTime?              @updatedAt
-  categories  CategoriesOnProjects[]
+  projects    CategoriesOnProjects[]
+}
+
+model Project {
+  id             BigInt                 @id @default(autoincrement())
+  ownerTgId      BigInt
+  name           String?
+  tagline        String?
+  description    String?                @db.Text
+  langCodes      String?
+  specialty      String?
+  website        String?
+  twitters       Json?
+  tgChannels     Json?
+  tgChats        Json?
+  tgBots         Json?
+  iconImg        Json?
+  upvote         Int                    @default(1)
+  rating         String?
+  priority       Int                    @default(100)
+  verified       Boolean                @default(false)
+  cloutIndex     Int                    @default(1)
+  updatedDateKey String
+  promoted       Boolean                @default(false)
+  deleted        Boolean                @default(false)
+  extJson        Json?
+  createBy       BigInt?
+  createDt       DateTime               @default(now())
+  modifyBy       BigInt?
+  modifyDt       DateTime?              @updatedAt
+  categories     CategoriesOnProjects[]
+}
+
+model ParticipantHistory {
+  id               BigInt    @id @default(autoincrement())
+  projectId        BigInt
+  targetKey        String
+  updatedDateKey   String
+  participantCount Int       @default(1)
+  extJson          Json?
+  createBy         BigInt?
+  createDt         DateTime  @default(now())
+  modifyBy         BigInt?
+  modifyDt         DateTime? @updatedAt
+
+  @@unique([projectId, targetKey, updatedDateKey])
+}
+
+model CloutIndex {
+  id             BigInt    @id @default(autoincrement())
+  projectId      BigInt
+  updatedDateKey String
+  userActivity   Int
+  influence      Int
+  community      Int
+  innovation     Int
+  Technical      Int
+  Market         Int
+  extJson        Json?
+  createBy       BigInt?
+  createDt       DateTime  @default(now())
+  modifyBy       BigInt?
+  modifyDt       DateTime? @updatedAt
+
+  @@index([projectId])
 }
 
 model CategoriesOnProjects {
@@ -135,18 +168,6 @@ model ProjectVote {
   @@index([voteBy])
 }
 
-model ProjectUserHistory {
-  id        BigInt   @id @default(autoincrement())
-  projectId BigInt
-  entityId  String
-  dateIndex String
-  extJson   Json?
-  createBy  BigInt?
-  createDt  DateTime @default(now())
-
-  @@unique([projectId, entityId, dateIndex])
-}
-
 model NotcoinGoodTable {
   id        BigInt   @id @default(autoincrement())
   projectId BigInt
@@ -163,7 +184,6 @@ model Image {
   id       BigInt        @id @default(autoincrement())
   scenario ImageScenario
   bindId   BigInt?
-  service  ImageService  @default(AliyunOSS)
   url      String
   extJson  Json?
   createBy BigInt?
@@ -303,13 +323,6 @@ enum ImageScenario {
   Service
   Tool
   Other
-}
-
-enum ImageService {
-  Local
-  AwsS3
-  AliyunOSS
-  CloudflareImage
 }
 
 //
