@@ -1,32 +1,17 @@
 import { PrismaClient } from "@prisma/client";
 
-class Db {
-  static instance: PrismaClient;
-
-  static getInstance(): PrismaClient {
-    if (!Db.instance) {
-      return new PrismaClient();
-    }
-    return Db.instance;
-  }
+declare global {
+  var prisma: PrismaClient | undefined;
 }
 
-const db = Db.getInstance();
-export { db };
+const prisma =
+  global.prisma ||
+  new PrismaClient({
+    log: ["query", "info", "warn", "error"],
+  });
 
-// 在进程退出时调用关闭方法
-process.on("SIGINT", async () => {
-  await db.$connect();
-  console.info("========================");
-  console.info("== DB close at SIGINT =");
-  console.info("========================");
-  process.exit(0);
-});
+if (process.env.NODE_ENV !== "production") {
+  global.prisma = prisma;
+}
 
-process.on("SIGTERM", async () => {
-  await db.$connect();
-  console.info("#########################");
-  console.info("## DB close at SIGTERM #");
-  console.info("#########################");
-  process.exit(0);
-});
+export default prisma;

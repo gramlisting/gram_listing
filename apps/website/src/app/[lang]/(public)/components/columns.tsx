@@ -11,8 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-import { JsonArray, JsonObject } from "@prisma/client/runtime/library";
+import { ArrowUpDown, Globe, MoreHorizontal, Users } from "lucide-react";
+import { JsonObject } from "@prisma/client/runtime/library";
 import {
   Select,
   SelectContent,
@@ -23,16 +23,28 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { Twitter } from "@/components/icons";
 
 // This type is used to define the shape of our data.
-interface Channel extends JsonObject {
+interface TgEntity extends JsonObject {
   id: number;
-  name: string;
-  members: number;
+  username: string;
+  title?: string;
+  langCode?: string;
+  members?: number;
   delta?: number;
 }
 
-type ChannelArray<T extends JsonObject> = T[];
+interface Link extends JsonObject {
+  type: "website" | "twitter";
+  url: string;
+  username?: string;
+  visitors?: number;
+  followers?: number;
+  delta?: number;
+}
+
+type GenericArray<T extends JsonObject> = T[];
 
 // You can use a Zod schema here if you want.
 export type Project = {
@@ -40,10 +52,10 @@ export type Project = {
   name: string;
   category: string[];
   cloutIndex: number;
-  channels: ChannelArray<Channel>;
-  groups: JsonArray;
-  bots: JsonArray;
-  socialMedias: JsonArray;
+  channels: GenericArray<TgEntity>;
+  groups: GenericArray<TgEntity>;
+  bots: GenericArray<TgEntity>;
+  links: GenericArray<Link>;
 };
 
 export const columns: ColumnDef<Project>[] = [
@@ -106,7 +118,7 @@ export const columns: ColumnDef<Project>[] = [
       let channels = row.original.channels;
       return channels.map((channel, index) => (
         <div key={index}>
-          {channel.name} {channel.members}
+          {channel.title} {channel.members}
           <span
             className={cn(
               channel.delta && channel.delta > 0
@@ -123,15 +135,68 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     accessorKey: "groups",
-    header: "Group",
+    cell: ({ row }) => {
+      let groups = row.original.groups;
+      return groups.map((group, index) => (
+        <div key={index} className="flex whitespace-nowrap">
+          <div>{group.title}</div>
+          <Users size={20} strokeWidth={1} />
+          <div>{group.members}</div>
+          <span
+            className={cn(
+              group.delta && group.delta > 0
+                ? "text-green-400"
+                : "text-red-400",
+            )}
+          >
+            {group.delta && group.delta > 0 ? "+" : ""}
+            {group.delta}
+          </span>
+        </div>
+      ));
+    },
   },
   {
-    accessorKey: "bots",
     header: "Bot",
+    cell: ({ row }) => {
+      let bots = row.original.bots;
+      return bots.map((bot, index) => (
+        <div key={index}>
+          {bot.username} {bot.members}
+          <span
+            className={cn(
+              bot.delta && bot.delta > 0 ? "text-green-400" : "text-red-400",
+            )}
+          >
+            {bot.delta && bot.delta > 0 ? "+" : ""}
+            {bot.delta}
+          </span>
+        </div>
+      ));
+    },
   },
   {
-    accessorKey: "links",
     header: "Links",
+    cell: ({ row }) => {
+      let links = row.original.links;
+      if (!links || links.length < 1) {
+        return <></>;
+      }
+      return links.map((link, index) => (
+        <div key={index}>
+          {link.type === "twitter" && <Twitter className="mr-2 h-4 w-4" />}
+          {link.type === "website" && <Globe className="mr-2 h-4 w-4" />}
+          <span
+            className={cn(
+              link.delta && link.delta > 0 ? "text-green-400" : "text-red-400",
+            )}
+          >
+            {link.delta && link.delta > 0 ? "+" : ""}
+            {link.delta}
+          </span>
+        </div>
+      ));
+    },
   },
   // {
   //   accessorKey: "amount",

@@ -1,9 +1,9 @@
 import type { Locale } from "@/config/i18n-config";
 import { cn } from "@/lib/utils";
 import { BreadcrumbNav } from "@/components/breadcrumb";
-import { db } from "@gramlisting/db";
 import VoteButton from "@/components/vote-button";
 import { Prisma } from "@prisma/client";
+import prisma from "@gramlisting/db";
 
 const imageUrl = (imgJson: Prisma.JsonValue) => {
   if (typeof imgJson === "object" && imgJson !== null) {
@@ -30,13 +30,13 @@ export default async function CategoryDetailPage({
   let key: string = decodeURIComponent(params.key);
   let lang = params.lang;
 
-  let category = await db.category.findUnique({ where: { key: key } });
+  let category = await prisma.category.findUnique({ where: { key: key } });
 
   if (!category) {
     return "404";
   }
 
-  const projects = await db.project.findMany({
+  const projects = await prisma.project.findMany({
     where: {
       categories: {
         some: {

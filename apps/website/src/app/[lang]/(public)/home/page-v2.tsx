@@ -5,11 +5,11 @@ import { MeteorsCard } from "@/components/meteors-card";
 import { FeaturesCard } from "@/components/features-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { db } from "@gramlisting/db";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import VoteButton from "@/components/vote-button";
 import { Category } from "@prisma/client";
+import prisma from "@gramlisting/db";
 
 const meteors_data: Meteor = {
   name: "Submit your project",
@@ -91,7 +91,7 @@ export default async function IndexPage({
 }) {
   const dict = await getDictionary(lang);
 
-  let categories: Category[] = await db.category.findMany({
+  let categories: Category[] = await prisma.category.findMany({
     orderBy: { priority: "asc" },
   });
 

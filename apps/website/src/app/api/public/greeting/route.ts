@@ -1,6 +1,6 @@
 import type { NextRequest } from "next/server";
-import { db } from "@gramlisting/db";
 import superjson from "superjson";
+import prisma from "@gramlisting/db";
 //
 // export async function GET(request: NextRequest) {
 //   try {
@@ -13,7 +13,7 @@ import superjson from "superjson";
 
 const handler = async (req: NextRequest) => {
   try {
-    let prismaPromise = await db.user.findMany();
+    let prismaPromise = await prisma.user.findMany();
     let data = superjson.stringify(prismaPromise);
     console.info(data);
     return Response.json({

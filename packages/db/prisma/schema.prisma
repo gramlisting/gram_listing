@@ -89,8 +89,7 @@ model Project {
   description    String?                @db.Text
   langCodes      String?
   specialty      String?
-  website        String?
-  socialMedias   Json?
+  links          Json?
   tgChannels     Json?
   tgChats        Json?
   tgBots         Json?

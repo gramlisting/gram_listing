@@ -2,11 +2,11 @@
 
 import { Locale } from "@/config/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
-import { db } from "@gramlisting/db";
 import { cn } from "@/lib/utils";
 import { Category } from "@prisma/client";
 import { columns, Project } from "@/app/[lang]/(public)/components/columns";
 import { DataTable } from "@/app/[lang]/(public)/components/data-table";
+import prisma from "@gramlisting/db";
 
 async function getData(): Promise<Project[]> {
   // Fetch data from your API here.
@@ -17,26 +17,90 @@ async function getData(): Promise<Project[]> {
       category: ["Community", "TG Mini Game"],
       cloutIndex: 100,
       channels: [
-        { id: 123, name: "abc_news", members: 341000, delta: 123 },
-        { id: 123, name: "abc_news", members: 341000, delta: 123 },
-        { id: 123, name: "abc_news", members: 341000, delta: 123 },
+        {
+          id: 123,
+          title: "DOGS Community",
+          username: "@dogs_community",
+          members: 341000,
+          delta: -123,
+        },
       ],
-      groups: [{ id: 223, name: "abc_groups", members: 211000, delta: 231 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 55 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      groups: [],
+      bots: [
+        {
+          id: 323,
+          title: "Dogs",
+          username: "abc_bot",
+          members: 123000,
+          delta: -55,
+        },
+      ],
+      links: [
+        {
+          type: "website",
+          url: "http://localhost:8080",
+          visitors: 20000,
+        },
+        {
+          type: "twitter",
+          url: "https://x.com/memeclubai",
+          name: "@memeclubai",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
-      id: 1,
-      name: "Dogs",
-      category: ["TG Mini Game", "Community", "Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000, delta: 123 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      id: 2,
+      name: "Tonkeeper",
+      category: ["Wallet"],
+      cloutIndex: 99,
+      channels: [
+        {
+          id: 123,
+          title: "Tonkeeper News",
+          username: "@tonkeeper_news",
+          langCode: "en",
+          members: 341000,
+          delta: 123,
+        },
+        {
+          id: 123,
+          title: "",
+          username: "@tonkeeper_ru",
+          members: 341000,
+          delta: 123,
+        },
+        {
+          id: 123,
+          title: "@tonkeeper_farsi",
+          username: "@tonkeeper_farsi",
+          members: 341000,
+          delta: 123,
+        },
+      ],
+      groups: [
+        {
+          id: 223,
+          title: "TONKEEPER WALLET",
+          username: "@tonkeeperwallet_official",
+          members: 211000,
+        },
+        {
+          id: 223,
+          title: "tonkeeper_ru",
+          username: "@tonkeeper_ru",
+          members: 211000,
+        },
+      ],
+      bots: [{ id: 323, username: "abc_bot", members: 123000 }],
+      links: [
+        {
+          type: "website",
+          url: "https://tonkeeper.com",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -44,11 +108,19 @@ async function getData(): Promise<Project[]> {
       name: "Notcoin",
       category: ["Wallet", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000, delta: 123 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [
+        { id: 223, username: "abc_groups", members: 211000, delta: 123 },
+      ],
+      bots: [{ id: 323, username: "abc_bot", members: 123000 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -56,11 +128,17 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["Wallet", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -68,11 +146,43 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["Wallet", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: "Yescoin",
+      category: ["Wallet", "Community", "TG Mini Game"],
+      cloutIndex: 100,
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [
+        { id: 223, username: "@theYescoin_chat3", members: 211000 },
+        { id: 223, username: "@theYescoin_chat4", members: 211000 },
+        { id: 223, username: "@theYescoin_chat5", members: 211000 },
+        { id: 223, username: "@theYescoin_chat6", members: 211000 },
+        { id: 223, username: "@theYescoin_chat8", members: 211000 },
+      ],
+      bots: [
+        { id: 323, username: "@theYescoin_bot", members: 123000, delta: 123 },
+      ],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -80,11 +190,17 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["Wallet", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -92,11 +208,17 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["Wallet", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -104,23 +226,17 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["Wallet", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Wallet", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -128,11 +244,17 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["XXX", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -140,11 +262,17 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["Wallet2", "Community", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
     {
@@ -152,11 +280,17 @@ async function getData(): Promise<Project[]> {
       name: "Memeclub",
       category: ["Community22", "TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, name: "abc_news", members: 341000 }],
-      groups: [{ id: 223, name: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, name: "abc_bot", members: 123000, delta: 123 }],
-      socialMedias: [
-        { id: 323, type: "twitter", name: "xx_twitter", followers: 20000 },
+      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
+      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: -11,
+        },
       ],
     },
   ];
@@ -171,7 +305,7 @@ export default async function IndexPage({
 }) {
   const dict = await getDictionary(lang);
 
-  let categories: Category[] = await db.category.findMany({
+  let categories: Category[] = await prisma.category.findMany({
     orderBy: { priority: "asc" },
   });
   const data = await getData();
@@ -208,11 +342,6 @@ export default async function IndexPage({
                     tabs
                   </div>
                   <DataTable columns={columns} data={data} />
-                  {/*<div className="mx-auto max-w-2xl px-2 py-2 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">*/}
-                  {/*  <div className=" grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 ">*/}
-                  {/*    <DataTable columns={columns} data={data} />*/}
-                  {/*  </div>*/}
-                  {/*</div>*/}
                 </div>
               </div>
             </div>
