@@ -40,8 +40,22 @@ async function getData(): Promise<Project[]> {
           members: 211000,
           delta: 123122211,
         },
+        {
+          id: 223,
+          title: "DOGS Chat",
+          username: "@tonkeeperwallet_official",
+          members: 211000,
+          delta: 123122211,
+        },
       ],
       bots: [
+        {
+          id: 323,
+          title: "Dogs",
+          username: "abc_bot",
+          members: 123000,
+          delta: -55,
+        },
         {
           id: 323,
           title: "Dogs",
@@ -100,17 +114,17 @@ async function getData(): Promise<Project[]> {
           title: "TONKEEPER WALLET",
           username: "@tonkeeperwallet_official",
           members: 211000,
-          delta: 123122211,
-        },
-        {
-          id: 223,
-          title: "tonkeeper_ru",
-          username: "@tonkeeper_ru",
-          members: 211000,
-          delta: -9882123,
+          delta: 1234,
         },
       ],
-      bots: [{ id: 323, username: "abc_bot", members: 123000 }],
+      bots: [
+        {
+          id: 323,
+          title: "TONKEEPER Bot",
+          username: "abc_bot",
+          members: 1230,
+        },
+      ],
       links: [
         {
           type: "website",
@@ -121,14 +135,19 @@ async function getData(): Promise<Project[]> {
       ],
     },
     {
-      id: 2,
-      name: "Notcoin",
-      category: ["Wallet", "Community", "TG Mini Game"],
+      id: 3,
+      name: "Notcoin ",
+      category: ["TG Mini Game"],
       cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [
-        { id: 223, username: "abc_groups", members: 211000, delta: 123 },
+      channels: [
+        {
+          id: 123,
+          title: "Notcoin Explore",
+          username: "@notcoin_explore",
+          members: 30000000,
+        },
       ],
+      groups: [],
       bots: [{ id: 323, username: "abc_bot", members: 123000 }],
       links: [
         {

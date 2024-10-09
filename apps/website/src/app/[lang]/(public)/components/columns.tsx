@@ -11,15 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import {
-  ArrowUpDown,
-  BadgeCheck,
-  Bot,
-  Globe,
-  Megaphone,
-  MoreHorizontal,
-  Users,
-} from "lucide-react";
+import { ArrowUpDown, BadgeCheck, Globe, MoreHorizontal } from "lucide-react";
 import { JsonObject } from "@prisma/client/runtime/library";
 import {
   Select,
@@ -92,7 +84,18 @@ export const columns: ColumnDef<Project>[] = [
   },
 
   {
-    header: "Category",
+    accessorKey: "category",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Category
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
       let projectRow = row.original;
       let categoryArray = projectRow.category;
@@ -118,70 +121,94 @@ export const columns: ColumnDef<Project>[] = [
   },
   {
     accessorKey: "cloutIndex",
-    header: "Clout Index",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Clout Index
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
   },
   {
     header: "Channel",
     cell: ({ row }) => {
       let channels = row.original.channels;
-      return channels.map((channel, index) => (
-        <div key={index} className="flex items-center whitespace-nowrap">
-          <span>{channel.username}&nbsp;</span>
-          <Megaphone size={16} strokeWidth={1} />
-          <span className="font-thin">{formatUserNumber(channel.members)}</span>
-          <span
-            className={cn(
-              channel.delta && channel.delta > 0
-                ? "text-green-400"
-                : "text-red-400",
-            )}
-          >
-            {formatUserNumber(channel.delta, true)}
-          </span>
-        </div>
-      ));
+      if (channels && channels.length >= 1) {
+        const channel = channels[0]!;
+        return (
+          <div className="flex flex-col justify-start">
+            <div>{channel.title}</div>
+            <div className="text-sm text-gray-500">
+              {formatUserNumber(channel.members)} subscribers{" "}
+              <span
+                className={cn(
+                  channel.delta && channel.delta > 0
+                    ? "text-green-400"
+                    : "text-red-400",
+                )}
+              >
+                {formatUserNumber(channel.delta, true)}
+              </span>
+            </div>
+          </div>
+        );
+      }
     },
   },
   {
-    accessorKey: "groups",
+    header: "Groups",
     cell: ({ row }) => {
       let groups = row.original.groups;
-      return groups.map((group, index) => (
-        <div key={index} className="flex items-center whitespace-nowrap">
-          <div>{group.title}&nbsp;</div>
-          <Users size={16} strokeWidth={1} />
-          <div className="font-thin">{formatUserNumber(group.members)}</div>
-          <span
-            className={cn(
-              group.delta && group.delta > 0
-                ? "text-green-400 "
-                : "text-red-400",
-            )}
-          >
-            {formatUserNumber(group.delta, true)}
-          </span>
-        </div>
-      ));
+      if (groups && groups.length >= 1) {
+        const channel = groups[0]!;
+        return (
+          <div className="flex flex-col justify-start">
+            <div>{channel.title}</div>
+            <div className="text-sm text-gray-500">
+              {formatUserNumber(channel.members)} members{" "}
+              <span
+                className={cn(
+                  channel.delta && channel.delta > 0
+                    ? "text-green-400"
+                    : "text-red-400",
+                )}
+              >
+                {formatUserNumber(channel.delta, true)}
+              </span>
+            </div>
+          </div>
+        );
+      }
     },
   },
   {
     header: "Bot",
     cell: ({ row }) => {
       let bots = row.original.bots;
-      return bots.map((bot, index) => (
-        <div key={index} className="flex items-center whitespace-nowrap">
-          <div>{bot.username}&nbsp;</div>
-          <Bot size={16} strokeWidth={1} />
-          <div className="font-thin">{formatUserNumber(bot.members)}</div>
-          <span
-            className={cn(
-              bot.delta && bot.delta > 0 ? "text-green-400 " : "text-red-400",
-            )}
-          >
-            {formatUserNumber(bot.delta, true)}
-          </span>
-        </div>
-      ));
+      if (bots && bots.length >= 1) {
+        const bot = bots[0]!;
+        return (
+          <div className="flex flex-col justify-start">
+            <div>{bot.title}</div>
+            <div className="text-sm text-gray-500">
+              {formatUserNumber(bot.members)} monthly users{" "}
+              <span
+                className={cn(
+                  bot.delta && bot.delta > 0
+                    ? "text-green-400"
+                    : "text-red-400",
+                )}
+              >
+                {formatUserNumber(bot.delta, true)}
+              </span>
+            </div>
+          </div>
+        );
+      }
     },
   },
   {
@@ -195,8 +222,12 @@ export const columns: ColumnDef<Project>[] = [
         <div className="flex items-center whitespace-nowrap">
           {links.map((link, index) => (
             <div key={index} className="flex items-center whitespace-nowrap">
-              {link.type === "twitter" && <Twitter className=" h-4 w-4" />}
-              {link.type === "website" && <Globe className=" h-4 w-4" />}
+              {link.type === "twitter" && (
+                <Twitter className=" text-gray-400 h-4 w-4" />
+              )}
+              {link.type === "website" && (
+                <Globe className="text-gray-400 h-4 w-4" />
+              )}
               <span
                 className={cn(
                   "mr-2",
