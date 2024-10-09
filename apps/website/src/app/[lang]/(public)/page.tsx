@@ -6,6 +6,7 @@ import { cn } from "@/utils/utils";
 import { Category } from "@prisma/client";
 import { columns, Project } from "@/app/[lang]/(public)/components/columns";
 import { DataTable } from "@/app/[lang]/(public)/components/data-table";
+
 import prisma from "@gramlisting/db";
 
 async function getData(): Promise<Project[]> {
@@ -237,6 +238,7 @@ export default async function IndexPage({
     orderBy: { priority: "asc" },
   });
   const data = await getData();
+
   return (
     <>
       <section
@@ -269,7 +271,11 @@ export default async function IndexPage({
                   <div className=" flex items-center  justify-between ">
                     tabs
                   </div>
-                  <DataTable columns={columns} data={data} />
+                  <DataTable
+                    columns={columns}
+                    data={data}
+                    routerBase="/p/project"
+                  />
                 </div>
               </div>
             </div>

@@ -1,6 +1,5 @@
 "use client";
 // data-table.tsx (client component) will contain our <DataTable /> component.
-
 import {
   ColumnDef,
   flexRender,
@@ -21,16 +20,23 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  routerBase: string;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  routerBase,
 }: DataTableProps<TData, TValue>) {
+  const router = useRouter();
+  const handleRowClick = (id: string) => {
+    router.push(`${routerBase}/${id}`);
+  };
   // 1. define a tanstack table
   const [sorting, setSorting] = useState<SortingState>([]);
   const table = useReactTable({
@@ -71,6 +77,8 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  onClick={() => handleRowClick(row.id)}
+                  className="cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
