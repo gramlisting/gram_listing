@@ -8,6 +8,7 @@ import { columns, Project } from "@/app/[lang]/(public)/components/columns";
 import { DataTable } from "@/app/[lang]/(public)/components/data-table";
 
 import prisma from "@gramlisting/db";
+import { HeadTabs } from "@/app/[lang]/(public)/components/head-tabs";
 
 async function getData(): Promise<Project[]> {
   // Fetch data from your API here.
@@ -268,9 +269,7 @@ export default async function IndexPage({
             <div className="flex flex-col items-start">
               <div className="flex w-full flex-col pt-1 md:pt-2">
                 <div className="space-y-1">
-                  <div className=" flex items-center  justify-between ">
-                    tabs
-                  </div>
+                  <HeadTabs />
                   <DataTable
                     columns={columns}
                     data={data}

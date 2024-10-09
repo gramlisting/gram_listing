@@ -15,11 +15,15 @@ export default async function CategoryDetailPage({
   // let name = params.name;
   let key: string = decodeURIComponent(params.key);
   let lang = params.lang;
-
+  const breadcrumbItems = [
+    { name: "Home", href: "/" },
+    { name: "Project", href: "/" },
+    { name: "View", href: "/" },
+  ];
   return (
     <>
       <section className={cn("w-full", "pb-2 px-2 sm:px-12 md:px-24 xl:px-40")}>
-        <BreadcrumbNav />
+        <BreadcrumbNav items={breadcrumbItems} />
         <div
           className={cn("w-full h-full", "flex flex-col items-center", "pt-8")}
         >

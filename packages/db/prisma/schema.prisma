@@ -101,6 +101,7 @@ model Project {
   cloutIndex     Int                    @default(1)
   updatedDateKey String
   promoted       Boolean                @default(false)
+  status         ProjectStatus          @default(Draft)
   deleted        Boolean                @default(false)
   extJson        Json?
   createBy       BigInt?
@@ -268,11 +269,12 @@ model Image {
 
 //  ================== enums ==================
 
-enum CommonState {
-  Init
+enum ProjectStatus {
+  Draft
+  Submited
   Pending
-  Done
-  Fail
+  Online
+  Deleted
 }
 
 enum TaskType {

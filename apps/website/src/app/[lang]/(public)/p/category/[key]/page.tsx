@@ -49,10 +49,16 @@ export default async function CategoryDetailPage({
     orderBy: { priority: "asc" },
   });
 
+  const breadcrumbItems = [
+    { name: "Home", href: "/" },
+    { name: "Category", href: "/p/category" },
+    { name: "View", href: "/" },
+  ];
+
   return (
     <>
       <section className={cn("w-full", "pb-2 px-2 sm:px-12 md:px-24 xl:px-40")}>
-        <BreadcrumbNav />
+        <BreadcrumbNav items={breadcrumbItems} />
         <div
           className={cn("w-full h-full", "flex flex-col items-center", "pt-8")}
         >
