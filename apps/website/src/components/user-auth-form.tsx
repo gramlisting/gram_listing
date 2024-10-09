@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useSearchParams } from "next/navigation";
-import {cn} from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { buttonVariants } from "@/components/ui/button";
 import * as Icons from "@/components/icons";
 import { Input } from "@/components/ui/input";
@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import {toast} from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 type Dictionary = Record<string, string>;
 

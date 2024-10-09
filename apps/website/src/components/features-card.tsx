@@ -1,8 +1,7 @@
 "use client";
 
-
-import {cn} from "@/lib/utils";
-import {AnimatedList} from "@/components/uix/animated-list";
+import { cn } from "@/utils/utils";
+import { AnimatedList } from "@/components/uix/animated-list";
 
 interface Item {
   name: string;

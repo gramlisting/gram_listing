@@ -3,8 +3,7 @@
 import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, stagger, useAnimate } from "framer-motion";
-import {cn} from "@/lib/utils";
-
+import { cn } from "@/utils/utils";
 
 const TextGenerateEffectImpl = ({
   words,

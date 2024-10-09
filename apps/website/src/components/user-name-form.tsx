@@ -7,7 +7,7 @@ import type { User } from "next-auth";
 import { useForm } from "react-hook-form";
 import type * as z from "zod";
 
-import {cn} from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
@@ -22,7 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { userNameSchema } from "@/lib/validations/user";
-import {toast} from "@/hooks/use-toast";
+import { toast } from "@/hooks/use-toast";
 
 interface UserNameFormProps extends React.HTMLAttributes<HTMLFormElement> {
   user: Pick<User, "id" | "name">;

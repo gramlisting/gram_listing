@@ -11,7 +11,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { ArrowUpDown, Globe, MoreHorizontal, Users } from "lucide-react";
+import {
+  ArrowUpDown,
+  BadgeCheck,
+  Bot,
+  Globe,
+  Megaphone,
+  MoreHorizontal,
+  Users,
+} from "lucide-react";
 import { JsonObject } from "@prisma/client/runtime/library";
 import {
   Select,
@@ -22,7 +30,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/utils";
+import { cn, formatUserNumber } from "@/utils/utils";
 import { Twitter } from "@/components/icons";
 
 // This type is used to define the shape of our data.
@@ -117,8 +125,10 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       let channels = row.original.channels;
       return channels.map((channel, index) => (
-        <div key={index}>
-          {channel.title} {channel.members}
+        <div key={index} className="flex items-center whitespace-nowrap">
+          <span>{channel.username}&nbsp;</span>
+          <Megaphone size={16} strokeWidth={1} />
+          <span className="font-thin">{formatUserNumber(channel.members)}</span>
           <span
             className={cn(
               channel.delta && channel.delta > 0
@@ -126,8 +136,7 @@ export const columns: ColumnDef<Project>[] = [
                 : "text-red-400",
             )}
           >
-            {channel.delta && channel.delta > 0 ? "+" : ""}
-            {channel.delta}
+            {formatUserNumber(channel.delta, true)}
           </span>
         </div>
       ));
@@ -138,19 +147,18 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       let groups = row.original.groups;
       return groups.map((group, index) => (
-        <div key={index} className="flex whitespace-nowrap">
-          <div>{group.title}</div>
-          <Users size={20} strokeWidth={1} />
-          <div>{group.members}</div>
+        <div key={index} className="flex items-center whitespace-nowrap">
+          <div>{group.title}&nbsp;</div>
+          <Users size={16} strokeWidth={1} />
+          <div className="font-thin">{formatUserNumber(group.members)}</div>
           <span
             className={cn(
               group.delta && group.delta > 0
-                ? "text-green-400"
+                ? "text-green-400 "
                 : "text-red-400",
             )}
           >
-            {group.delta && group.delta > 0 ? "+" : ""}
-            {group.delta}
+            {formatUserNumber(group.delta, true)}
           </span>
         </div>
       ));
@@ -161,15 +169,16 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       let bots = row.original.bots;
       return bots.map((bot, index) => (
-        <div key={index}>
-          {bot.username} {bot.members}
+        <div key={index} className="flex items-center whitespace-nowrap">
+          <div>{bot.username}&nbsp;</div>
+          <Bot size={16} strokeWidth={1} />
+          <div className="font-thin">{formatUserNumber(bot.members)}</div>
           <span
             className={cn(
-              bot.delta && bot.delta > 0 ? "text-green-400" : "text-red-400",
+              bot.delta && bot.delta > 0 ? "text-green-400 " : "text-red-400",
             )}
           >
-            {bot.delta && bot.delta > 0 ? "+" : ""}
-            {bot.delta}
+            {formatUserNumber(bot.delta, true)}
           </span>
         </div>
       ));
@@ -182,20 +191,26 @@ export const columns: ColumnDef<Project>[] = [
       if (!links || links.length < 1) {
         return <></>;
       }
-      return links.map((link, index) => (
-        <div key={index}>
-          {link.type === "twitter" && <Twitter className="mr-2 h-4 w-4" />}
-          {link.type === "website" && <Globe className="mr-2 h-4 w-4" />}
-          <span
-            className={cn(
-              link.delta && link.delta > 0 ? "text-green-400" : "text-red-400",
-            )}
-          >
-            {link.delta && link.delta > 0 ? "+" : ""}
-            {link.delta}
-          </span>
+      return (
+        <div className="flex items-center whitespace-nowrap">
+          {links.map((link, index) => (
+            <div key={index} className="flex items-center whitespace-nowrap">
+              {link.type === "twitter" && <Twitter className=" h-4 w-4" />}
+              {link.type === "website" && <Globe className=" h-4 w-4" />}
+              <span
+                className={cn(
+                  "mr-2",
+                  link.delta && link.delta > 0
+                    ? "text-green-400"
+                    : "text-red-400",
+                )}
+              >
+                {link.delta}
+              </span>
+            </div>
+          ))}
         </div>
-      ));
+      );
     },
   },
   // {
@@ -225,14 +240,18 @@ export const columns: ColumnDef<Project>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(payment.name)}
             >
-              Copy payment ID
+              Suggest a Category
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+
+            <DropdownMenuItem>Update</DropdownMenuItem>
+            <DropdownMenuItem>
+              Get Verified&nbsp;
+              <BadgeCheck size={20} strokeWidth={1.5} absoluteStrokeWidth />
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { ThumbsUp } from "lucide-react";
-import BigNumber from "bignumber.js";
+import { formatUserNumber } from "@/utils/utils";
 
 interface CategoryDetailProps {
   type: "project" | "gem";
@@ -40,31 +40,8 @@ export default function VoteButton({ type, initCount }: CategoryDetailProps) {
       ${isVoted ? "font-bold text-black dark:text-white" : " text-gray-800 dark:text-gray-400 "}
       `}
       >
-        {formatNumber(count)}
+        {formatUserNumber(count)}
       </span>
     </button>
   );
-}
-function formatNumber(num: number): string {
-  const bigNum = new BigNumber(num);
-
-  if (bigNum.isLessThan(1000)) {
-    return bigNum.toString();
-  } else if (bigNum.isLessThan(1_000_000)) {
-    const thousands = bigNum.dividedBy(1000);
-    if (thousands.mod(1).isZero()) {
-      return `${thousands.toString()}K`;
-    } else {
-      const formatted = thousands.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1);
-      return `${formatted}K`;
-    }
-  } else {
-    const millions = bigNum.dividedBy(1_000_000);
-    if (millions.mod(1).isZero()) {
-      return `${millions.toString()}M`;
-    } else {
-      const formatted = millions.toFixed(2, BigNumber.ROUND_DOWN).slice(0, -1);
-      return `${formatted}M`;
-    }
-  }
 }

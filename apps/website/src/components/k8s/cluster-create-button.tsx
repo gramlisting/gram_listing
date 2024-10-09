@@ -6,11 +6,10 @@ import * as React from "react";
 //navigate to new page
 import { useRouter } from "next/navigation";
 
-import {cn} from "@/lib/utils";
+import { cn } from "@/utils/utils";
 //button self design
-import { buttonVariants, type ButtonProps } from "@/components/ui/button";
+import { type ButtonProps, buttonVariants } from "@/components/ui/button";
 import * as Icons from "@/components/icons";
-
 
 interface K8sCreateButtonProps extends ButtonProps {
   customProp?: string;

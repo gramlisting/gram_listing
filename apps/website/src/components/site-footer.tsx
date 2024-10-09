@@ -1,7 +1,6 @@
 import * as React from "react";
-import Image from "next/image";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 
 import { ModeToggle } from "@/components/mode-toggle";
 import * as Icons from "@/components/icons";

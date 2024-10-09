@@ -3,8 +3,7 @@
 import React, { useEffect } from "react";
 import dynamic from "next/dynamic";
 import { motion, stagger, useAnimate, useInView } from "framer-motion";
-import {cn} from "@/lib/utils";
-
+import { cn } from "@/utils/utils";
 
 export const TypewriterEffectImpl = ({
   words,

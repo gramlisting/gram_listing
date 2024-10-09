@@ -2,7 +2,7 @@
 
 import { Locale } from "@/config/i18n-config";
 import { getDictionary } from "@/lib/get-dictionary";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { Category } from "@prisma/client";
 import { columns, Project } from "@/app/[lang]/(public)/components/columns";
 import { DataTable } from "@/app/[lang]/(public)/components/data-table";
@@ -21,11 +21,26 @@ async function getData(): Promise<Project[]> {
           id: 123,
           title: "DOGS Community",
           username: "@dogs_community",
-          members: 341000,
+          members: 89098787,
           delta: -123,
         },
+        {
+          id: 123,
+          title: "DOGS Community",
+          username: "@dogs_community",
+          members: 10023,
+          delta: 123456,
+        },
       ],
-      groups: [],
+      groups: [
+        {
+          id: 223,
+          title: "DOGS Chat",
+          username: "@tonkeeperwallet_official",
+          members: 211000,
+          delta: 123122211,
+        },
+      ],
       bots: [
         {
           id: 323,
@@ -85,12 +100,14 @@ async function getData(): Promise<Project[]> {
           title: "TONKEEPER WALLET",
           username: "@tonkeeperwallet_official",
           members: 211000,
+          delta: 123122211,
         },
         {
           id: 223,
           title: "tonkeeper_ru",
           username: "@tonkeeper_ru",
           members: 211000,
+          delta: -9882123,
         },
       ],
       bots: [{ id: 323, username: "abc_bot", members: 123000 }],
@@ -175,114 +192,6 @@ async function getData(): Promise<Project[]> {
       bots: [
         { id: 323, username: "@theYescoin_bot", members: 123000, delta: 123 },
       ],
-      links: [
-        {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Wallet", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
-      links: [
-        {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Wallet", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
-      links: [
-        {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Wallet", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
-      links: [
-        {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["XXX", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
-      links: [
-        {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Wallet2", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
-      links: [
-        {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Community22", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
       links: [
         {
           type: "twitter",

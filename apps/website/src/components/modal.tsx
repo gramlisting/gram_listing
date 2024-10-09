@@ -2,7 +2,7 @@
 
 import { Drawer } from "vaul";
 
-import {cn} from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 import useMediaQuery from "@/hooks/use-media-query";

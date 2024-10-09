@@ -1,6 +1,6 @@
 import React, { type CSSProperties } from "react";
 
-import {cn} from "@/lib/utils";
+import { cn } from "@/utils/utils";
 
 interface ShimmerButtonProps {
   shimmerColor?: string;

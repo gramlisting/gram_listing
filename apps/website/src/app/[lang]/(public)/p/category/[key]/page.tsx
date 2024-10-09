@@ -1,5 +1,5 @@
 import type { Locale } from "@/config/i18n-config";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { BreadcrumbNav } from "@/components/breadcrumb";
 import VoteButton from "@/components/vote-button";
 import { Prisma } from "@prisma/client";

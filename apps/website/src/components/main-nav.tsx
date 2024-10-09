@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 
@@ -9,8 +8,7 @@ import * as Icons from "@/components/icons";
 
 import { MobileNav } from "@/components/mobile-nav";
 import type { MainNavItem } from "@/types";
-import { cn } from "@/lib/utils";
-import { GramListingBrand } from "@/components/icons";
+import { cn } from "@/utils/utils";
 
 interface MainNavProps {
   items?: MainNavItem[];

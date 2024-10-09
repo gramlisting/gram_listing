@@ -5,7 +5,7 @@ import { MeteorsCard } from "@/components/meteors-card";
 import { FeaturesCard } from "@/components/features-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import Link from "next/link";
 import VoteButton from "@/components/vote-button";
 import { Category } from "@prisma/client";

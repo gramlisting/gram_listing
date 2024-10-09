@@ -4,7 +4,7 @@ import * as React from "react";
 import NextImage, { ImageProps } from "next/image";
 import { useMDXComponent } from "next-contentlayer2/hooks";
 
-import {cn} from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { Callout } from "@/components/ui/callout";
 
 import { MdxCard } from "@/components/content/mdx-card";
