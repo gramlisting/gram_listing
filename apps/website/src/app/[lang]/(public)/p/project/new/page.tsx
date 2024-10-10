@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@/utils/utils";
 import { BreadcrumbNav } from "@/components/breadcrumb";
 import { z } from "zod";
@@ -16,8 +15,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import MultiSelect from "@/app/[lang]/(public)/components/multi-select";
 
-export default async function NewProjectForm() {
+export default function NewProjectForm() {
   const breadcrumbItems = [
     { name: "Home", href: "/" },
     { name: "Project", href: "/" },
@@ -31,7 +31,7 @@ export default async function NewProjectForm() {
         message: "Project Name must be at least 2 characters.",
       })
       .max(50),
-    categories: z.array(z.number()),
+    categories: z.string(),
     channels: z.array(z.string()),
     groups: z.array(z.string()),
     bots: z.array(z.string()),
@@ -44,7 +44,7 @@ export default async function NewProjectForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       projectName: "",
-      categories: [],
+      categories: "",
       channels: [],
       groups: [],
       bots: [],
@@ -60,6 +60,15 @@ export default async function NewProjectForm() {
     alert(values);
     return;
   }
+
+  const options = [
+    { value: "apple", label: "Apple", group: "Fruits" },
+    { value: "banana", label: "Banana", group: "Fruits" },
+    { value: "carrot", label: "Carrot", group: "Vegetables" },
+    { value: "potato", label: "Potato", group: "Vegetables" },
+    { value: "chicken", label: "Chicken", group: "Meats" },
+    { value: "beef", label: "Beef", group: "Meats" },
+  ];
 
   return (
     <>
@@ -95,6 +104,27 @@ export default async function NewProjectForm() {
                     </FormItem>
                   )}
                 />
+                <FormField
+                  control={form.control}
+                  name="categories"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Categories</FormLabel>
+                      <FormControl>
+                        <Input type="hidden" placeholder="shadcn" {...field} />
+                      </FormControl>
+                      <MultiSelect
+                        options={options}
+                        placeholder="Choose Categories"
+                      />
+                      <FormDescription>
+                        This is your public display name.
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
                 <Button type="submit">Submit</Button>
               </form>
             </Form>

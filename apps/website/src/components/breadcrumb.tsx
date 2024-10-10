@@ -23,24 +23,25 @@ export function BreadcrumbNav({ items }: BreadcrumbProps) {
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        {items.map((item, index) => (
-          <>
-            <BreadcrumbItem key={"item" + index}>
-              {index < items.length - 1 ? (
-                <>
-                  <BreadcrumbLink href={item.href}>{item.name}</BreadcrumbLink>{" "}
-                  <BreadcrumbSeparator key={"separator" + index}>
-                    <SlashIcon />
-                  </BreadcrumbSeparator>
-                </>
-              ) : (
-                <BreadcrumbPage key={"page" + index}>
-                  {item.name}
-                </BreadcrumbPage>
-              )}
-            </BreadcrumbItem>
-          </>
-        ))}
+        <BreadcrumbItem key={"item0"}>
+          <BreadcrumbLink href={items[0]!.href}>
+            {items[0]!.name}
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator key={"separator-0"}>
+          <SlashIcon />
+        </BreadcrumbSeparator>
+        <BreadcrumbItem key={"item1"}>
+          <BreadcrumbLink href={items[1]!.href}>
+            {items[1]!.name}
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator key={"separator-1"}>
+          <SlashIcon />
+        </BreadcrumbSeparator>
+        <BreadcrumbItem key={"item2"}>
+          <BreadcrumbPage>{items[2]!.name}</BreadcrumbPage>
+        </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   );
