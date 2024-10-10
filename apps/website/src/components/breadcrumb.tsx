@@ -29,12 +29,14 @@ export function BreadcrumbNav({ items }: BreadcrumbProps) {
               {index < items.length - 1 ? (
                 <>
                   <BreadcrumbLink href={item.href}>{item.name}</BreadcrumbLink>{" "}
-                  <BreadcrumbSeparator key={"sep" + index}>
+                  <BreadcrumbSeparator key={"separator" + index}>
                     <SlashIcon />
                   </BreadcrumbSeparator>
                 </>
               ) : (
-                <BreadcrumbPage>{item.name}</BreadcrumbPage>
+                <BreadcrumbPage key={"page" + index}>
+                  {item.name}
+                </BreadcrumbPage>
               )}
             </BreadcrumbItem>
           </>

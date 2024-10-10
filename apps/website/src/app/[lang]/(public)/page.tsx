@@ -16,8 +16,8 @@ async function getData(): Promise<Project[]> {
     {
       id: 1,
       name: "Dogs",
-      category: ["Community", "TG Mini Game"],
-      cloutIndex: 100,
+      category: ["TG Mini Game", "TG  Game"],
+      cloutIndex: 99,
       channels: [
         {
           id: 123,
@@ -40,14 +40,14 @@ async function getData(): Promise<Project[]> {
           title: "DOGS Chat",
           username: "@tonkeeperwallet_official",
           members: 211000,
-          delta: 123122211,
+          delta: 1234,
         },
         {
           id: 223,
           title: "DOGS Chat",
           username: "@tonkeeperwallet_official",
           members: 211000,
-          delta: 123122211,
+          delta: 12,
         },
       ],
       bots: [
@@ -85,7 +85,7 @@ async function getData(): Promise<Project[]> {
       id: 2,
       name: "Tonkeeper",
       category: ["Wallet"],
-      cloutIndex: 99,
+      cloutIndex: 98,
       channels: [
         {
           id: 123,
@@ -132,7 +132,7 @@ async function getData(): Promise<Project[]> {
           type: "website",
           url: "https://tonkeeper.com",
           followers: 20000,
-          delta: -11,
+          delta: 113,
         },
       ],
     },
@@ -140,78 +140,66 @@ async function getData(): Promise<Project[]> {
       id: 3,
       name: "Notcoin ",
       category: ["TG Mini Game"],
-      cloutIndex: 100,
+      cloutIndex: 94,
       channels: [
         {
           id: 123,
           title: "Notcoin Explore",
           username: "@notcoin_explore",
           members: 30000000,
+          delta: 8900,
         },
       ],
       groups: [],
-      bots: [{ id: 323, username: "abc_bot", members: 123000 }],
-      links: [
+      bots: [
         {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
+          id: 323,
+          title: "Notcoin",
+          username: "abc_bot",
+          members: 123000,
+          delta: 18900,
         },
       ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Wallet", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
       links: [
         {
           type: "twitter",
           name: "xx_twitter",
           url: "http://localhost:8080",
           followers: 20000,
-          delta: -11,
-        },
-      ],
-    },
-    {
-      id: 3,
-      name: "Memeclub",
-      category: ["Wallet", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
-      groups: [{ id: 223, username: "abc_groups", members: 211000 }],
-      bots: [{ id: 323, username: "abc_bot", members: 123000, delta: 123 }],
-      links: [
-        {
-          type: "twitter",
-          name: "xx_twitter",
-          url: "http://localhost:8080",
-          followers: 20000,
-          delta: -11,
         },
       ],
     },
     {
       id: 3,
       name: "Yescoin",
-      category: ["Wallet", "Community", "TG Mini Game"],
-      cloutIndex: 100,
-      channels: [{ id: 123, username: "abc_news", members: 341000 }],
+      category: ["TG Mini Game"],
+      cloutIndex: 89,
+      channels: [
+        {
+          id: 123,
+          title: "Yescoin News",
+          username: "abc_news",
+          members: 341000,
+          delta: 900,
+        },
+      ],
       groups: [
-        { id: 223, username: "@theYescoin_chat3", members: 211000 },
-        { id: 223, username: "@theYescoin_chat4", members: 211000 },
-        { id: 223, username: "@theYescoin_chat5", members: 211000 },
-        { id: 223, username: "@theYescoin_chat6", members: 211000 },
-        { id: 223, username: "@theYescoin_chat8", members: 211000 },
+        {
+          id: 223,
+          title: "Yescoin Chats",
+          username: "abc_groups",
+          members: 211000,
+          delta: 18900,
+        },
       ],
       bots: [
-        { id: 323, username: "@theYescoin_bot", members: 123000, delta: 123 },
+        {
+          id: 323,
+          title: "Yescoin",
+          username: "abc_bot",
+          members: 123000,
+          delta: 234,
+        },
       ],
       links: [
         {
@@ -219,7 +207,81 @@ async function getData(): Promise<Project[]> {
           name: "xx_twitter",
           url: "http://localhost:8080",
           followers: 20000,
-          delta: -11,
+          delta: -2,
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: "Catizen",
+      category: ["TG Mini Game"],
+      cloutIndex: 88,
+      channels: [
+        {
+          id: 123,
+          title: "Catizen Publish",
+          username: "abc_news",
+          members: 341000,
+          delta: 2200,
+        },
+      ],
+      groups: [
+        {
+          id: 223,
+          title: "Catizen Community",
+          username: "abc_groups",
+          members: 211000,
+        },
+      ],
+      bots: [
+        {
+          id: 323,
+          title: "Catizen",
+          username: "abc_bot",
+          members: 123000,
+          delta: 56,
+        },
+      ],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: 67,
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: "Tonviewer",
+      category: ["Explorer"],
+      cloutIndex: 87,
+      channels: [
+        {
+          id: 123,
+          title: "Tonviewer News",
+          username: "abc_news",
+          members: 34100120,
+        },
+      ],
+      groups: [],
+      bots: [
+        {
+          id: 323,
+          title: "Tonviewer ",
+          username: "@theYescoin_bot",
+          members: 123000,
+          delta: 123,
+        },
+      ],
+      links: [
+        {
+          type: "twitter",
+          name: "xx_twitter",
+          url: "http://localhost:8080",
+          followers: 20000,
+          delta: 789,
         },
       ],
     },

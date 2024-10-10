@@ -230,13 +230,12 @@ export const columns: ColumnDef<Project>[] = [
               )}
               <span
                 className={cn(
-                  "mr-2",
                   link.delta && link.delta > 0
                     ? "text-green-400"
                     : "text-red-400",
                 )}
               >
-                {link.delta}
+                {formatUserNumber(link.delta, true)}
               </span>
             </div>
           ))}
